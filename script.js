@@ -7,3 +7,5 @@ var ch = canvas.height;
 
 ctx.fillStyle = "black";
 ctx.fillRect(0,0,cw,ch);
+
+//ok
