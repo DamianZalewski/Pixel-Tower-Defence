@@ -9,6 +9,7 @@ function field()  {
     this.posX = 0;
     this.posY = 0;
     this.type = 'none';
+    this.tower = '';
 }
 
 function createFields() {
@@ -31,13 +32,12 @@ function drawFields() {
     for(let i = 0;i<fields.length;i++) {
                     ctx.fillStyle = fields[i].backgroundColor;
         ctx.fillRect(fields[i].posX,fields[i].posY,fields[i].width,fields[i].height);
-        
+            
         if(fields[i].type == 'building') {
-            drawTower(fields[i].posX, fields[i].posY, fields[i].width, fields[i].height);
-
+                    drawTower(fields[i].tower,fields[i].posX, fields[i].posY, fields[i].width, fields[i].height);
+            }
         }
-  
-    };
+   
 }
 
 function handleFieldHover(ev) {
@@ -63,6 +63,14 @@ function handleFieldClick(ev) {
             posY >= fields[i].posY && posY <= fields[i].posY + fields[i].height
         ) {
             fields[i].type = 'building';
+            switch(towerChoice) {
+                case 1 : 
+                    fields[i].tower = 'archerTower';
+                    break;
+                case 2 : 
+                    fields[i].tower = 'mageTower';
+                    break;
+            }
         }
 
     }

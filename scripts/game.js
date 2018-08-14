@@ -19,11 +19,13 @@ function drawLogic() {
     ctx.fillRect(0,0,800,600);
     
     drawFields();
+    drawSideMenu();
 }
 
 function eventHandler() {
     canvas.addEventListener('mousemove',handleFieldHover);
     canvas.addEventListener('click',handleFieldClick);
+    canvas.addEventListener('click',handleSideMenuClick);
 }
 
 
