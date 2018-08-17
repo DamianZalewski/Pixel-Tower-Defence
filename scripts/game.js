@@ -5,6 +5,7 @@ function game() {
     
     if(initFlag) init();
     drawLogic();
+    updateLogic();
     eventHandler();
 }
 
@@ -20,6 +21,11 @@ function drawLogic() {
     
     drawFields();
     drawSideMenu();
+    drawEnemy();
+}
+
+function updateLogic() {
+    updateEnemy();
 }
 
 function eventHandler() {

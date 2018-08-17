@@ -19,6 +19,7 @@ function createFields() {
         for(let j = 0; j<10;j++) {
             let newField = new field();
             newField.backgroundColor = "black";
+            if(i%10 == 4) newField.backgroundColor = "gray";
             newField.posX = 30+i*54;
             newField.posY = 30+j*54;
             newField.id = index;
@@ -48,9 +49,11 @@ function handleFieldHover(ev) {
             posX >= fields[i].posX && posX <= fields[i].posX + fields[i].width &&
             posY >= fields[i].posY && posY <= fields[i].posY + fields[i].height
         ) {
-            fields[i].backgroundColor = "yellow";
+             if(fields[i].backgroundColor != "gray") fields[i].backgroundColor = "yellow";
         }
-        else fields[i].backgroundColor = "black";
+        else {
+            if(fields[i].backgroundColor != "gray")  fields[i].backgroundColor = "black";
+        }
     }
 }
 
