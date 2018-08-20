@@ -1,8 +1,6 @@
 let initFlag = true;
 
 function game() {
-
-    
     if(initFlag) init();
     drawLogic();
     updateLogic();
@@ -22,10 +20,12 @@ function drawLogic() {
     drawFields();
     drawSideMenu();
     drawEnemy();
+    drawShot();
 }
 
 function updateLogic() {
     updateEnemy();
+    updateShot();
 }
 
 function eventHandler() {

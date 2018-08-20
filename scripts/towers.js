@@ -3,6 +3,7 @@ archerTower.src = "assets/archer-tower.png";
 let mageTower = new Image();
 mageTower.src = "assets/mage-tower.png";
 
+
 function drawTower(tower,x, y, width, height) {
     switch(tower) {
         case 'archerTower':
@@ -12,5 +13,5 @@ function drawTower(tower,x, y, width, height) {
             ctx.drawImage(mageTower,x,y,width,height);
             break;    
     }
-   
 }
+

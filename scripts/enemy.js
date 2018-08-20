@@ -1,13 +1,13 @@
 let ratImage = new Image();
 ratImage.src = "assets/rat.png";
 
-let width = 54;
-let height = 54;
-let x = 54*5 -24;
-let y = 10;
+let EnemyWidth = 54;
+let EnemyHeight = 54;
+let EnemyX = 54*5 -24;
+let EnemyY = 10;
 
 function drawEnemy() {
-    ctx.drawImage(ratImage,x,y,width,height);
+    ctx.drawImage(ratImage,EnemyX,EnemyY,EnemyWidth,EnemyHeight);
 }
 
 function updateEnemy() {
@@ -15,7 +15,6 @@ function updateEnemy() {
 }
 
 function moveEnemy() {
-    y += 1;
-    if (y>54*10) y = 10;
-        
+    EnemyY += 1;
+    if (EnemyY>54*10) EnemyY = 10;
 }
