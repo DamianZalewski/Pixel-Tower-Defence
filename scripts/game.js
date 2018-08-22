@@ -9,7 +9,7 @@ function game() {
 
 function init() {
     createFields();
-    
+    setInterval(enemyAnimation,150);
     initFlag = false;
 }
 

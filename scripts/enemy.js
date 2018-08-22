@@ -33,7 +33,7 @@ function drawEnemy() {
 
 function updateEnemy() {
     moveEnemy();
-    enemyAnimation();
+
 }
 
 function moveEnemy() {

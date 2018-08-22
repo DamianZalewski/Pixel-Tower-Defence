@@ -71,10 +71,16 @@ function handleFieldClick(ev) {
             fields[i].type = 'building';
             switch(towerChoice) {
                 case 1 : 
-                    fields[i].tower = 'archerTower';
+                    if(gold - 15 >= 0) {
+                        fields[i].tower = 'archerTower';
+                        gold -= 15;
+                    }
                     break;
                 case 2 : 
-                    fields[i].tower = 'mageTower';
+                    if(gold -40 >= 0) {
+                        fields[i].tower = 'mageTower';
+                        gold -= 40;
+                    }
                     break;
             }
         }
