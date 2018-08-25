@@ -68,17 +68,20 @@ function handleFieldClick(ev) {
             posX >= fields[i].posX && posX <= fields[i].posX + fields[i].width &&
             posY >= fields[i].posY && posY <= fields[i].posY + fields[i].height
         ) {
-            fields[i].type = 'building';
+            if(fields[i].type === 'building' || fields[i].backgroundColor === 'gray') continue;
+           
             switch(towerChoice) {
                 case 1 : 
                     if(gold - 15 >= 0) {
                         fields[i].tower = 'archerTower';
+                         fields[i].type = 'building';
                         gold -= 15;
                     }
                     break;
                 case 2 : 
                     if(gold -40 >= 0) {
                         fields[i].tower = 'mageTower';
+                        fields[i].type = 'building';
                         gold -= 40;
                     }
                     break;
