@@ -27,6 +27,7 @@ function drawSideMenu() {
     ctx.fillText('40',cw-75,166);
     
     drawGold();
+    drawLife();
 }
 
 function handleSideMenuClick(ev) {
@@ -54,9 +55,5 @@ function drawGold() {
     ctx.fillStyle = 'white';
     ctx.font = "30px Arial";
     ctx.fillText(gold,cw-165,ch-40);
-    
-}
-
-function updateGold() {
     
 }

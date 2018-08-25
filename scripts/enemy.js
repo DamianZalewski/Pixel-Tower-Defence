@@ -14,6 +14,8 @@ let EnemyHeight = 54;
 let EnemyX = 54*5 -24;
 let EnemyY = 10;
 
+let ratHp = 10;
+
 function drawEnemy() {
     switch(ratAnimationStage) {
         case 0:
@@ -29,6 +31,10 @@ function drawEnemy() {
             ctx.drawImage(ratImage4,EnemyX,EnemyY,EnemyWidth,EnemyHeight);
             break;
     }
+    ctx.fillStyle = 'green';
+    if(ratHp < 7) ctx.fillStyle = 'yellow'
+    if(ratHp < 4) ctx.fillStyle = 'red';
+    ctx.fillRect(EnemyX+ (EnemyWidth - ratHp *4)/2,EnemyY-5,ratHp * 4,5);
 }
 
 function updateEnemy() {
@@ -38,7 +44,11 @@ function updateEnemy() {
 
 function moveEnemy() {
     EnemyY += 1;
-    if (EnemyY>54*10) EnemyY = 10;
+    if (EnemyY>54*10) {
+        EnemyY = 10;
+        life --;
+        ratHp = 10;
+    }
 }
 
 function enemyAnimation() {
