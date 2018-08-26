@@ -59,24 +59,24 @@ function drawGold() {
     
 }
 
-function drawEnemyInfo() {
-    ctx.fillStyle = 'black';
-    ctx.fillRect(cw-190,ch-250,150,100);
-    switch(ratAnimationStage) {
-        case 0:
-            ctx.drawImage(ratImage1,cw-140,ch-210,54,54);
-            break;
-        case 1:
-            ctx.drawImage(ratImage2,cw-140,ch-210,54,54);
-            break;
-        case 2:
-            ctx.drawImage(ratImage3,cw-140,ch-210,54,54);
-            break;
-        case 3:
-            ctx.drawImage(ratImage4,cw-140,ch-210,54,54);
-            break;
-    }
-    ctx.fillStyle = "white";
-    ctx.fillText('Rat', cw-140,ch-220);
+    function drawEnemyInfo() {
+        ctx.fillStyle = 'black';
+        ctx.fillRect(cw-190,ch-250,150,100);
+        switch(ratObject.ratAnimationStage) {
+            case 0:
+                ctx.drawImage(ratObject.ratImage1,cw-140,ch-210,54,54);
+                break;
+            case 1:
+                ctx.drawImage(ratObject.ratImage2,cw-140,ch-210,54,54);
+                break;
+            case 2:
+                ctx.drawImage(ratObject.ratImage3,cw-140,ch-210,54,54);
+                break;
+            case 3:
+                ctx.drawImage(ratObject.ratImage4,cw-140,ch-210,54,54);
+                break;
+        }
+        ctx.fillStyle = "white";
+        ctx.fillText('Rat', cw-140,ch-220);
 
-}
+    }

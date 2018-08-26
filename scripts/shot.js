@@ -15,17 +15,17 @@ function updateShot() {
             fields[i].shotY = fields[i].posY;
         }
         else {
-            fields[i].shotX > EnemyX+EnemyWidth/2 ? fields[i].shotX -=1 : fields[i].shotX += 1;
-            fields[i].shotY > EnemyY+EnemyHeight/2 ? fields[i].shotY -=1 : fields[i].shotY += 1;
+            fields[i].shotX > ratObject.x+ratObject.width/2 ? fields[i].shotX -=1 : fields[i].shotX += 1;
+            fields[i].shotY > ratObject.y+ratObject.height/2 ? fields[i].shotY -=1 : fields[i].shotY += 1;
             
-            if((fields[i].shotX >= EnemyX -40  && fields[i].shotX <= EnemyX +40 ) && 
-               (fields[i].shotY >= EnemyY - 40 && fields[i].shotY <= EnemyY +40)) {
+            if((fields[i].shotX >= ratObject.x -40  && fields[i].shotX <= ratObject.x +40 ) && 
+               (fields[i].shotY >= ratObject.y - 40 && fields[i].shotY <= ratObject.y +40)) {
                 fields[i].shotBool = false;
-                ratHp --; 
-                if(ratHp === 0) {
+                ratObject.ratHp --; 
+                if(ratObject.ratHp === 0) {
                     gold += 20;
-                    ratHp = 10;
-                    EnemyY = 10;
+                    ratObject.ratHp = 10;
+                    ratObject.y = 10;
                 }
             } 
         }
