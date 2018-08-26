@@ -28,6 +28,7 @@ function drawSideMenu() {
     
     drawGold();
     drawLife();
+    drawEnemyInfo();
 }
 
 function handleSideMenuClick(ev) {
@@ -56,4 +57,26 @@ function drawGold() {
     ctx.font = "30px Arial";
     ctx.fillText(gold,cw-165,ch-40);
     
+}
+
+function drawEnemyInfo() {
+    ctx.fillStyle = 'black';
+    ctx.fillRect(cw-190,ch-250,150,100);
+    switch(ratAnimationStage) {
+        case 0:
+            ctx.drawImage(ratImage1,cw-140,ch-210,54,54);
+            break;
+        case 1:
+            ctx.drawImage(ratImage2,cw-140,ch-210,54,54);
+            break;
+        case 2:
+            ctx.drawImage(ratImage3,cw-140,ch-210,54,54);
+            break;
+        case 3:
+            ctx.drawImage(ratImage4,cw-140,ch-210,54,54);
+            break;
+    }
+    ctx.fillStyle = "white";
+    ctx.fillText('Rat', cw-140,ch-220);
+
 }
