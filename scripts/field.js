@@ -21,10 +21,8 @@ function createFields() {
         let k = 0;
         for(let j = 0; j<10;j++) {
             let newField = new field();
-            newField.backgroundColor = "black";
-            if(i%10 == 4) newField.backgroundColor = "gray";
-            newField.posX = 30+i*54;
-            newField.posY = 30+j*54;
+            newField.posX = 30+j*54;
+            newField.posY = 30+i*54;
             newField.id = index;
             index++;
             fields.push(newField);
@@ -33,10 +31,14 @@ function createFields() {
 }
 
 function drawFields() {
-    for(let i = 0;i<fields.length;i++) {
-                    ctx.fillStyle = fields[i].backgroundColor;
-        ctx.fillRect(fields[i].posX,fields[i].posY,fields[i].width,fields[i].height);
-            
+    for(let i = 0;i<fields.length;i++) { 
+        drawLevel1(fields[i].posX, fields[i].posY, i);
+        
+        if(fields[i].backgroundColor === 'yellow') {
+            ctx.fillStyle = 'yellow';
+            ctx.fillRect(fields[i].posX, fields[i].posY, fields[i].width, fields[i].height)
+        }
+        
         if(fields[i].type == 'building') {
                     drawTower(fields[i].tower,fields[i].posX, fields[i].posY, fields[i].width, fields[i].height);
             }
