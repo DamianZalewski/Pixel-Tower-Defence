@@ -14,6 +14,8 @@ let rat = function(){
     this.ratAnimationStage = 0;
     this.ratHp = 10;
     this.ratMaxHp = 10;
+    this.pathIndex = 0;
+    this.pathCounter = 0;
 }
 
 let ratObject = new rat();
@@ -47,12 +49,23 @@ function updateEnemy() {
 }
 
 function moveEnemy() {
-    ratObject.y += 1;
-    if (ratObject.y > 54*10) {
-        ratObject.y = 10;
-        life --;
-        ratObject.ratHp = ratObject.ratMaxHp;
+    ratObject.y = fields[pathArray[ratObject.pathIndex]].posY + ratObject.pathCounter;
+    if(ratObject.pathCounter == 53) {
+        if(pathArray.length-1 == ratObject.pathIndex) {
+            ratObject.pathIndex = 0;
+            life--;
+            ratObject.ratHp = ratObject.ratMaxHp; 
+        } 
+        else {
+            ratObject.pathIndex++;
+        }       
+        ratObject.pathCounter = 0;
     }
+    else {
+       ratObject.pathCounter++;
+    }
+
+    
 }
 
 function enemyAnimation() {
