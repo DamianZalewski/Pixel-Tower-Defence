@@ -75,7 +75,9 @@ function handleFieldClick(ev) {
             posX >= fields[i].posX && posX <= fields[i].posX + fields[i].size &&
             posY >= fields[i].posY && posY <= fields[i].posY + fields[i].size
         ) {
-            if(fields[i].type === 'building') continue;
+            if( fields[i].type === 'building' ||
+                fields[i].type === 'path' ||
+                fields[i].type === 'obstacle') continue;
             buildTower(i);
         }
 

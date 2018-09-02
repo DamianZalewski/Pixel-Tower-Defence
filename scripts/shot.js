@@ -24,8 +24,10 @@ function updateShot() {
                 ratObject.ratHp --; 
                 if(ratObject.ratHp === 0) {
                     gold += 20;
-                    ratObject.ratHp = 10;
+                    ratObject.ratHp = ratObject.ratMaxHp;
                     ratObject.y = 10;
+                    ratObject.pathIndex = 0;
+                    ratObject.pathCounter = 0;
                 }
             } 
         }

@@ -36,10 +36,12 @@ function drawLevel1(x,y,index) {
             break;
         case 2:
             ctx.drawImage(tile2,x,y,tileWidth,tileHeight);
+            fields[index].type = 'obstacle';
             break;
         case 3:
             ctx.drawImage(tile3,x,y,tileWidth,tileHeight);
             pathArray.push(index);
+            fields[index].type = 'path';
             break;
     }
 }
