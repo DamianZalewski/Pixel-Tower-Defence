@@ -18,76 +18,79 @@ let rat = function(){
     this.pathCounter = 0;
 }
 
-let ratObject = new rat();
+let enemiesArray = [];
+enemiesArray[0] = new rat();
+enemiesArray[1] = new rat();
+enemiesArray[0].y = 200;
+
 
 function drawEnemy() {
-    switch(ratObject.ratAnimationStage) {
+    for(let i = 0; i<enemiesArray.length;i++){
+        switch(enemiesArray[i].ratAnimationStage) {
         case 0:
-            ctx.drawImage(ratObject.ratImage1, ratObject.x, ratObject.y, ratObject.width, ratObject.height);
+            ctx.drawImage(enemiesArray[i].ratImage1, enemiesArray[i].x, enemiesArray[i].y, enemiesArray[i].width, enemiesArray[i].height);
             break;
         case 1:
-            ctx.drawImage(ratObject.ratImage2, ratObject.x, ratObject.y, ratObject.width, ratObject.height);
+            ctx.drawImage(enemiesArray[i].ratImage2, enemiesArray[i].x, enemiesArray[i].y, enemiesArray[i].width, enemiesArray[i].height);
             break;
         case 2:
-            ctx.drawImage(ratObject.ratImage3, ratObject.x, ratObject.y, ratObject.width, ratObject.height);
+            ctx.drawImage(enemiesArray[i].ratImage3, enemiesArray[i].x, enemiesArray[i].y, enemiesArray[i].width, enemiesArray[i].height);
             break;
         case 3:
-            ctx.drawImage(ratObject.ratImage4, ratObject.x, ratObject.y, ratObject.width, ratObject.height);
+            ctx.drawImage(enemiesArray[i].ratImage4, enemiesArray[i].x, enemiesArray[i].y, enemiesArray[i].width, enemiesArray[i].height);
             break;
     }
-    
     //hp bar
     ctx.fillStyle = 'green';
-    if(ratObject.ratHp < 7) ctx.fillStyle = 'yellow'
-    if(ratObject.ratHp < 4) ctx.fillStyle = 'red';
-    ctx.fillRect(ratObject.x+ (ratObject.width - ratObject.ratHp * 5)/2, ratObject.y-5,ratObject.ratHp * 5,5);
+    if(enemiesArray[i].ratHp < 7) ctx.fillStyle = 'yellow'
+    if(enemiesArray[i].ratHp < 4) ctx.fillStyle = 'red';
+    ctx.fillRect(enemiesArray[i].x+ (enemiesArray[i].width - enemiesArray[i].ratHp * 5)/2, enemiesArray[i].y-5,enemiesArray[i].ratHp * 5,5);
+        }
 }
 
 function updateEnemy() {
-    moveEnemy();
-
-}
-
-function moveEnemy() {
-    ratObject.y = fields[pathArray[ratObject.pathIndex]].posY + ratObject.pathCounter;
-    if(ratObject.pathCounter == 53) {
-        if(pathArray.length-1 == ratObject.pathIndex) {
-            ratObject.pathIndex = 0;
-            life--;
-            ratObject.ratHp = ratObject.ratMaxHp; 
-        } 
+    for(let i = 0; i<enemiesArray.length;i++){
+        enemiesArray[i].y = fields[pathArray[enemiesArray[i].pathIndex]].posY + enemiesArray[i].pathCounter;
+        if(enemiesArray[i].pathCounter == 53) {
+            if(pathArray.length-1 == enemiesArray[i].pathIndex) {
+                enemiesArray[i].pathIndex = 0;
+                life--;
+                enemiesArray[i].ratHp = enemiesArray[i].ratMaxHp; 
+            } 
+            else {
+                enemiesArray[i].pathIndex++;
+            }       
+            enemiesArray[i].pathCounter = 0;
+        }
         else {
-            ratObject.pathIndex++;
-        }       
-        ratObject.pathCounter = 0;
+            enemiesArray[i].pathCounter++;
+        }
     }
-    else {
-       ratObject.pathCounter++;
-    }
-
     
 }
 
 function enemyAnimation() {
-    ratObject.ratAnimationStage++;
-    if(ratObject.ratAnimationStage == 4) ratObject.ratAnimationStage = 0;
+    for(let i = 0; i<enemiesArray.length;i++){
+        enemiesArray[i].ratAnimationStage++;
+        if(enemiesArray[i].ratAnimationStage == 4) enemiesArray[i].ratAnimationStage = 0;
+    }
 }
 
  function drawEnemyInfo() {
         ctx.fillStyle = 'black';
         ctx.fillRect(cw-190,ch-250,150,100);
-        switch(ratObject.ratAnimationStage) {
+        switch(enemiesArray[0].ratAnimationStage) {
             case 0:
-                ctx.drawImage(ratObject.ratImage1,cw-140,ch-210,54,54);
+                ctx.drawImage(enemiesArray[0].ratImage1,cw-140,ch-210,54,54);
                 break;
             case 1:
-                ctx.drawImage(ratObject.ratImage2,cw-140,ch-210,54,54);
+                ctx.drawImage(enemiesArray[0].ratImage2,cw-140,ch-210,54,54);
                 break;
             case 2:
-                ctx.drawImage(ratObject.ratImage3,cw-140,ch-210,54,54);
+                ctx.drawImage(enemiesArray[0].ratImage3,cw-140,ch-210,54,54);
                 break;
             case 3:
-                ctx.drawImage(ratObject.ratImage4,cw-140,ch-210,54,54);
+                ctx.drawImage(enemiesArray[0].ratImage4,cw-140,ch-210,54,54);
                 break;
         }
         ctx.fillStyle = "white";

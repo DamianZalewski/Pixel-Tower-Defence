@@ -8,6 +8,7 @@ let mageTower = new Image();
 mageTower.src = "assets/mage-tower.png";
 let mageCost = 40
 
+let towerChoice = -1;
 
 function drawTower(tower,x, y, width, height) {
     switch(tower) {

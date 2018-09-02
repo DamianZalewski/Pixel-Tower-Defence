@@ -1,4 +1,3 @@
-let towerChoice = -1;
 
 
 function drawSideMenu() {
