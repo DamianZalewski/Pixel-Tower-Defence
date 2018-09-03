@@ -14,14 +14,73 @@ let rat = function(){
     this.ratAnimationStage = 0;
     this.ratHp = 10;
     this.ratMaxHp = 10;
-    this.pathIndex = 0;
-    this.pathCounter = 0;
+    this.pathIndex = 4; // should update dynamic
+    this.pathCounter = 1;
+    this.pathIndexCounter = 0;
+    this.direction = '';
 }
 
 let enemiesArray = [];
 enemiesArray[0] = new rat();
-enemiesArray[1] = new rat();
-enemiesArray[0].y = 200;
+function updateEnemy() {
+    for(let i = 0; i<enemiesArray.length;i++){
+//        let pathVar = pathArray[enemiesArray[i].pathIndex+1];
+//        let enemyVar = pathArray[enemiesArray[i].pathIndex];
+//        let summary = enemyVar - pathVar;
+//        console.log(summary);
+//        if (summary == 1) enemiesArray[i].x--
+//        else if (summary == -1) enemiesArray[i].x++
+//        else if (summary > 1) enemiesArray[i].y--
+//        else if (summary < -1) enemiesArray[i].y++;    
+//        enemiesArray[i].pathCounter++;
+//        if(enemiesArray[i].pathCounter == 54) {
+//            enemiesArray[i].pathCounter = 1;
+//            enemiesArray[i].pathIndex ++;
+//        }
+        let index = enemiesArray[i].pathIndex;
+        if(enemiesArray[i].direction != 'left' && fields[index+1].type == 'path') {
+            enemiesArray[i].x++;
+            enemiesArray[i].direction = 'right';
+            console.log('right');
+        }
+        else if(enemiesArray[i].direction != 'top' && fields[index+10].type == 'path') { 
+            enemiesArray[i].y++;
+            enemiesArray[i].direction = 'bottom';
+            console.log('bottom');
+        }
+        else if(enemiesArray[i].direction != 'right' && fields[index-1].type == 'path') { 
+            enemiesArray[i].x--;
+            enemiesArray[i].direction = 'left';
+            console.log('left');
+        }
+        else if(enemiesArray[i].direction != 'bottom' && fields[index-10].type == 'path') { 
+            enemiesArray[i].y--;
+            enemiesArray[i].direction = 'top';
+            console.log('right');
+        }
+        enemiesArray[i].pathCounter++;
+        if(enemiesArray[i].pathCounter == 54) {
+            enemiesArray[i].pathCounter = 1;
+            enemiesArray[i].pathIndexCounter ++;
+            switch( enemiesArray[i].direction) {
+                case 'top':
+                    enemiesArray[i].pathIndex -= 10;
+                    break;
+                case 'right':
+                    enemiesArray[i].pathIndex += 1;
+                    break;
+                case 'bottom':
+                    enemiesArray[i].pathIndex += 10;
+                    break;
+                case 'left':
+                    enemiesArray[i].pathIndex -= 1;
+                    break;
+            }
+        
+        }
+        
+    }
+}
 
 
 function drawEnemy() {
@@ -48,26 +107,7 @@ function drawEnemy() {
         }
 }
 
-function updateEnemy() {
-    for(let i = 0; i<enemiesArray.length;i++){
-        enemiesArray[i].y = fields[pathArray[enemiesArray[i].pathIndex]].posY + enemiesArray[i].pathCounter;
-        if(enemiesArray[i].pathCounter == 53) {
-            if(pathArray.length-1 == enemiesArray[i].pathIndex) {
-                enemiesArray[i].pathIndex = 0;
-                life--;
-                enemiesArray[i].ratHp = enemiesArray[i].ratMaxHp; 
-            } 
-            else {
-                enemiesArray[i].pathIndex++;
-            }       
-            enemiesArray[i].pathCounter = 0;
-        }
-        else {
-            enemiesArray[i].pathCounter++;
-        }
-    }
-    
-}
+
 
 function enemyAnimation() {
     for(let i = 0; i<enemiesArray.length;i++){
