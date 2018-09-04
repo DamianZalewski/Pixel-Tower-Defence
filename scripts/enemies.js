@@ -17,7 +17,7 @@ let rat = function(){
     this.pathIndex = 4; // should update dynamic
     this.pathCounter = 1;
     this.pathIndexCounter = 0;
-    this.direction = '';
+    this.direction = 'bottom';
 }
 
 let enemiesArray = [];
@@ -37,47 +37,124 @@ function updateEnemy() {
 //            enemiesArray[i].pathCounter = 1;
 //            enemiesArray[i].pathIndex ++;
 //        }
+//        let index = enemiesArray[i].pathIndex;
+//        if(enemiesArray[i].direction != 'left' && fields[index+1].type == 'path') {
+//            enemiesArray[i].x++;
+//            enemiesArray[i].direction = 'right';
+//            console.log('right');
+//        }
+//        else if(enemiesArray[i].direction != 'top' && fields[index+10].type == 'path') { 
+//            enemiesArray[i].y++;
+//            enemiesArray[i].direction = 'bottom';
+//            console.log('bottom');
+//        }
+//        else if(enemiesArray[i].direction != 'right' && fields[index-1].type == 'path') { 
+//            enemiesArray[i].x--;
+//            enemiesArray[i].direction = 'left';
+//            console.log('left');
+//        }
+//        else if(enemiesArray[i].direction != 'bottom' && fields[index-10].type == 'path') { 
+//            enemiesArray[i].y--;
+//            enemiesArray[i].direction = 'top';
+//            console.log('right');
+//        }
+//        enemiesArray[i].pathCounter++;
+//        if(enemiesArray[i].pathCounter == 54) {
+//            enemiesArray[i].pathCounter = 1;
+//            enemiesArray[i].pathIndexCounter ++;
+//            switch( enemiesArray[i].direction) {
+//                case 'top':
+//                    enemiesArray[i].pathIndex -= 10;
+//                    break;
+//                case 'right':
+//                    enemiesArray[i].pathIndex += 1;
+//                    break;
+//                case 'bottom':
+//                    enemiesArray[i].pathIndex += 10;
+//                    break;
+//                case 'left':
+//                    enemiesArray[i].pathIndex -= 1;
+//                    break;
+//            }
+//        
+//        }
         let index = enemiesArray[i].pathIndex;
-        if(enemiesArray[i].direction != 'left' && fields[index+1].type == 'path') {
-            enemiesArray[i].x++;
-            enemiesArray[i].direction = 'right';
-            console.log('right');
-        }
-        else if(enemiesArray[i].direction != 'top' && fields[index+10].type == 'path') { 
-            enemiesArray[i].y++;
-            enemiesArray[i].direction = 'bottom';
-            console.log('bottom');
-        }
-        else if(enemiesArray[i].direction != 'right' && fields[index-1].type == 'path') { 
-            enemiesArray[i].x--;
-            enemiesArray[i].direction = 'left';
-            console.log('left');
-        }
-        else if(enemiesArray[i].direction != 'bottom' && fields[index-10].type == 'path') { 
-            enemiesArray[i].y--;
-            enemiesArray[i].direction = 'top';
-            console.log('right');
-        }
-        enemiesArray[i].pathCounter++;
+        // find another field 
         if(enemiesArray[i].pathCounter == 54) {
+            console.log('test');
+
             enemiesArray[i].pathCounter = 1;
             enemiesArray[i].pathIndexCounter ++;
-            switch( enemiesArray[i].direction) {
+            let directionPathIsFound = false;
+            // check if there is another path in the same direction
+            switch(enemiesArray[i].direction) {
                 case 'top':
-                    enemiesArray[i].pathIndex -= 10;
+                    if(fields[index-10].type == 'path') { 
+                        directionPathIsFound = true;
+                         enemiesArray[i].pathIndex -= 10;
+                    }
+                    break;
+                case 'bottom':
+                    if(fields[index+10].type == 'path') { 
+                        directionPathIsFound = true;
+                         enemiesArray[i].pathIndex += 10;
+                    }
+                    break;
+                case 'left':
+
+                    if(fields[index-1].type == 'path') { 
+                        directionPathIsFound = true;
+                         enemiesArray[i].pathIndex -= 1;
+                    }
                     break;
                 case 'right':
                     enemiesArray[i].pathIndex += 1;
-                    break;
-                case 'bottom':
-                    enemiesArray[i].pathIndex += 10;
-                    break;
-                case 'left':
-                    enemiesArray[i].pathIndex -= 1;
+                    if(fields[index+1].type == 'path') {
+                        directionPathIsFound = true;
+                         enemiesArray[i].pathIndex += 1;
+                    }  
                     break;
             }
-        
+            // if there are not path in the same direction find new one
+            if(!directionPathIsFound) {        
+                if(enemiesArray[i].direction != 'bottom' && fields[index-10].type == 'path') { 
+                    enemiesArray[i].direction = 'top';
+                    console.log('top');
+                }
+                if(enemiesArray[i].direction != 'top' && fields[index+10].type == 'path') { 
+                    enemiesArray[i].direction = 'bottom';
+                    console.log('bottom');
+                }
+                
+                if(enemiesArray[i].direction != 'right' && fields[index-1].type == 'path') { 
+                    enemiesArray[i].direction = 'left';
+                    console.log('left');
+                }
+                
+                if(enemiesArray[i].direction != 'left' && fields[index+1].type == 'path') {
+                    enemiesArray[i].direction = 'right';
+                    console.log('right');
+                }
+            }
         }
+  
+        
+        // move enemy
+        switch(enemiesArray[i].direction) {
+                case 'top':
+                    enemiesArray[i].y--;
+                    break;
+                case 'bottom':
+                    enemiesArray[i].y++;
+                    break;
+                case 'left':
+                    enemiesArray[i].x--;
+                    break;
+                case 'right':
+                    enemiesArray[i].x++;
+                    break;
+        }
+        enemiesArray[i].pathCounter++;
         
     }
 }
