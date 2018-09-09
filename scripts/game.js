@@ -17,6 +17,7 @@ function drawLogic() {
     ctx.fillStyle = 'green';
     ctx.fillRect(0,0,800,600);
     pathArray = [];
+    drawGameBorder();
     drawFields();
     drawSideMenu();
     drawEnemy();

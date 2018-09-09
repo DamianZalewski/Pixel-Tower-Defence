@@ -151,6 +151,18 @@ function updateEnemy() {
                 enemiesArray[i].pathIndex += checkPathIndex(enemiesArray[i].direction);
             }
         }
+        
+        if (enemiesArray[i].y > ch - 30 - 54 || enemiesArray[i].x > 30 + 10*54) {
+            life--;
+            enemiesArray[i].x = 54*5 - 24;
+            enemiesArray[i].y = 10;
+            enemiesArray[i].ratAnimationStage = 0;
+            enemiesArray[i].ratHp = 10;
+            enemiesArray[i].ratMaxHp = 10;
+            enemiesArray[i].pathIndex = -1;
+            enemiesArray[i].pathCounter = 0;
+            enemiesArray[i].direction = '';
+        }
 
     }
 }
