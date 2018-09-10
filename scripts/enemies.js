@@ -48,8 +48,19 @@ let rat = function(){
     this.direction = '';
 }
 
+
+let enemiesMax = 10;
+let enemiesCounter = 1;
 let enemiesArray = [];
 enemiesArray[0] = new rat();
+
+function addEnemy() {
+    if(enemiesCounter != enemiesMax) {
+        enemiesArray[enemiesCounter] = new rat();
+        enemiesCounter++;
+    }
+}
+
 // refactoring the code below
 function checkNewPath(index) {
       if(fields[index-10] != undefined && fields[index-10].type == 'path') { 
@@ -154,6 +165,13 @@ function updateEnemy() {
         
         if (enemiesArray[i].y > ch - 30 - 54 || enemiesArray[i].x > 30 + 10*54) {
             life--;
+            resetEnemy(i);
+        }
+
+    }
+}
+
+function resetEnemy(i) {
             enemiesArray[i].x = 54*5 - 24;
             enemiesArray[i].y = 10;
             enemiesArray[i].ratAnimationStage = 0;
@@ -162,9 +180,6 @@ function updateEnemy() {
             enemiesArray[i].pathIndex = -1;
             enemiesArray[i].pathCounter = 0;
             enemiesArray[i].direction = '';
-        }
-
-    }
 }
 
 
