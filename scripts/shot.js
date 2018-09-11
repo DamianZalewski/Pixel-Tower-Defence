@@ -15,7 +15,8 @@ function updateShot() {
             fields[i].shotY = fields[i].posY;
         }
         else {
-            for(let j = 0;j < enemiesArray.length; j++) {``
+            for(let j = 0;j < enemiesArray.length; j++) {
+                if(!enemiesArray[j].alive) continue;
                 fields[i].shotX > enemiesArray[j].x+enemiesArray[j].width/2 ? fields[i].shotX -=1 : fields[i].shotX += 1;
                 fields[i].shotY > enemiesArray[j].y+enemiesArray[j].height/2 ? fields[i].shotY -=1 : fields[i].shotY += 1;
             
@@ -25,7 +26,7 @@ function updateShot() {
                         enemiesArray[j].ratHp --; 
                         if(enemiesArray[j].ratHp === 0) {
                             gold += 20;
-                            resetEnemy(j);
+                            killEnemy(j);
                         }
                 } 
             }
