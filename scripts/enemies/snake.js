@@ -1,4 +1,5 @@
 let snake = function(){
+    this.name = 'Snake';
     this.width = 54;
     this.height = 54;
     this.x = 54*5 - 24;
@@ -41,8 +42,8 @@ let snake = function(){
     this.ratImageBottom4.src = "assets/snake-bottom-2.png";
     //---
     this.ratAnimationStage = 0;
-    this.ratHp = 10;
-    this.ratMaxHp = 10;
+    this.ratHp = 15;
+    this.ratMaxHp = 15;
     this.pathIndex = -1;
     this.pathCounter = 0;
     this.direction = '';

@@ -1,4 +1,5 @@
 let rat = function(){
+    this.name = 'Rat';
     this.width = 54;
     this.height = 54;
     this.x = 54*5 - 24;

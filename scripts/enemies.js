@@ -1,16 +1,36 @@
 let enemiesMax = 10;
-let enemiesCounter = 1;
+let enemiesCounter = 0;
 let enemiesArray = [];
-enemiesArray[0] = new snake();
-
+let enemiesType = ['snake', 'rat'];
+let enemiesTypeCounter = 0;
+let killedEnemy = 0;
 function killEnemy(i) {
     enemiesArray[i].alive = false;
+    killedEnemy++;
 }
 
 function addEnemy() {
     if(enemiesCounter != enemiesMax) {
-        enemiesArray[enemiesCounter] = new rat();
+        switch(enemiesType[enemiesTypeCounter]) {
+            case 'snake':
+                enemiesArray[enemiesCounter] = new snake();
+                break;
+            case 'rat':
+                enemiesArray[enemiesCounter] = new rat();
+                break;
+        }
         enemiesCounter++;
+    }
+    
+    if(killedEnemy == 10) {
+        killedEnemy = 0;
+        enemiesCounter = 0;
+        enemiesTypeCounter++;
+        if(enemiesTypeCounter == enemiesType.length) {
+            enemiesTypeCounter = 0;
+            levelRounds ++;
+            if(levelRounds == 2) level++;
+        }
     }
 }
 
@@ -226,5 +246,7 @@ function enemyAnimation() {
                 break;
         }
         ctx.fillStyle = "white";
-        ctx.fillText('Rat', cw-140,ch-220);
+    ctx.textAlign = 'center';
+        ctx.fillText(enemiesArray[0].name, cw-115,ch-220);
+     ctx.textAlign = 'left';
 }
