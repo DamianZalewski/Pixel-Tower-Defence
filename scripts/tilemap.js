@@ -1,6 +1,6 @@
 let tileWidth = 54;
 let tileHeight = tileWidth;
-let level = 2;
+let level = 1;
 let levelRounds = 0;
 //--------------------------------------------
 // Level 1 tilemap

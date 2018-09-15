@@ -1,16 +1,31 @@
 let initFlag = true;
+let stage = 'mainMenu';
 
 function game() {
-    if(initFlag) init();
-    drawLogic();
-    updateLogic();
-    eventHandler();
+    switch(stage) {
+        case 'mainMenu':
+            if(initFlag) mainMenuInit();
+            drawMainMenu();
+            break;
+        case 'game':
+            if(initFlag) init();
+            drawLogic();
+            updateLogic();
+            eventHandler();
+            break;
+    }
+
 }
 
 function init() {
     createFields();
     setInterval(enemyAnimation,150);
     setInterval(addEnemy,3000);
+    initFlag = false;
+}
+
+function mainMenuInit() {
+    canvas.addEventListener('click',handleMainMenuClick);
     initFlag = false;
 }
 
