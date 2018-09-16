@@ -1,17 +1,15 @@
 let gameBorder = new Image();
 gameBorder.src = "assets/gameBorder.png";
+let mainMenuImage = new Image();
+mainMenuImage.src = "assets/mainMenu.png";
 
 function drawGameBorder() {
     ctx.drawImage(gameBorder,0,0,cw,ch);
 }
 
 function drawMainMenu() {
-    ctx.fillStyle = 'darkblue';
-    ctx.fillRect(0,0,cw,ch);
+    ctx.drawImage(mainMenuImage,0,0,cw,ch);
     ctx.fillStyle = 'black';
-    ctx.font = '50px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('PIXEL TOWER DEFENCE',400,130);
     ctx.fillRect(250,300,300,50);
     ctx.fillRect(250,400,300,50);
 }
