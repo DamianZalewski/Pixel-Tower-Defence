@@ -8,7 +8,7 @@ let mageTower = new Image();
 mageTower.src = "assets/mage-tower.png";
 let mageCost = 40
 
-let towerChoice = -1;
+let towerChoice = 'none';
 
 function drawTower(tower,x, y, width, height) {
     switch(tower) {
@@ -24,14 +24,14 @@ function drawTower(tower,x, y, width, height) {
 
 function buildTower(i) {
     switch(towerChoice) {
-        case 1 : 
+        case 'archerTower' : 
             if(gold - archerCost >= 0) {
             fields[i].tower = 'archerTower';
             fields[i].type = 'building';
             gold -= archerCost;
             }
             break;
-        case 2 : 
+        case 'mageTower' : 
             if(gold -mageCost >= 0) {
             fields[i].tower = 'mageTower';
             fields[i].type = 'building';
