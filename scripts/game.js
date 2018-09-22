@@ -1,6 +1,9 @@
 let initFlag = true;
 let stage = 'mainMenu';
-
+let animateStopMenuInterval;
+let enemyAnimationInternal;
+let addEnemyInterval;
+    
 function game() {
     switch(stage) {
         case 'mainMenu':
@@ -8,24 +11,34 @@ function game() {
             drawMainMenu();
             break;
         case 'game':
-            if(initFlag) init();
+            if(initFlag) gameInit();
             drawLogic();
             updateLogic();
-            eventHandler();
+            break;
+        case 'stopMenu':
+            if(initFlag) stopMenuInit();
+            drawStopMenu();
             break;
     }
-
 }
 
-function init() {
+function gameInit() {
     createFields();
-    setInterval(enemyAnimation,150);
-    setInterval(addEnemy,3000);
+    enemyAnimationInternal = setInterval(enemyAnimation,150);
+    addEnemyInterval = setInterval(addEnemy,3000);
+    gameEventInit();
     initFlag = false;
 }
 
 function mainMenuInit() {
     canvas.addEventListener('click',handleMainMenuClick);
+    initFlag = false;
+}
+
+function stopMenuInit() {
+    stopMenuY = -300;
+    animateStopMenuInterval = setInterval(animateStopMenu,1);
+    canvas.addEventListener('click',handleStopMenuClick);
     initFlag = false;
 }
 
@@ -45,10 +58,33 @@ function updateLogic() {
     updateShot();
 }
 
-function eventHandler() {
+function gameEventInit() {
     canvas.addEventListener('mousemove',handleFieldHover);
     canvas.addEventListener('click',handleFieldClick);
     canvas.addEventListener('click',handleSideMenuClick);
+    canvas.addEventListener('click',handleCogClick);
+}
+
+function removeAllEvenListeners() {
+    canvas.removeEventListener('mousemove',handleFieldHover);
+    canvas.removeEventListener('click',handleFieldClick);
+    canvas.removeEventListener('click',handleSideMenuClick);
+    canvas.removeEventListener('click',handleCogClick);
+    canvas.removeEventListener('click',handleMainMenuClick);
+    canvas.removeEventListener('click',handleStopMenuClick);
+}
+
+function clearAllIntervals() {
+    clearInterval(enemyAnimationInternal);
+    clearInterval(addEnemyInterval);
+    clearInterval(animateStopMenuInterval);
+}
+
+function setGameStage(newStage) {
+    stage = newStage;
+    clearAllIntervals();
+    removeAllEvenListeners();
+    initFlag = true;
 }
 
 

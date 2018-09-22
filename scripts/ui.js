@@ -18,18 +18,16 @@ function handleMainMenuClick(ev) {
         posY >= mainMenuButtonY && posY <= mainMenuButtonY + mainMenuButtonHeight
         ) 
     {
-        stage = 'game';
-        initFlag = true;
+         setGameStage('game');
     }
 }   
 // ----------------------------------------------
 
-// gamee stage ----------------------------------
+// game stage ----------------------------------
 let gameBorder = new Image();
 gameBorder.src = "assets/gameBorder.png";
 let mainMenuImage = new Image();
 mainMenuImage.src = "assets/mainMenu.png";
-
 
 function drawSideMenu() {
     towerChoice == 'archerTower' ? ctx.fillStyle = "red" : ctx.fillStyle = "white";
@@ -56,12 +54,13 @@ function drawSideMenu() {
     drawLife();
     drawEnemyInfo();
     drawStage();
+    drawCogIcon();
 }
 
 function drawStage() {
     ctx.fillStyle = 'white';
     ctx.textAlign = 'center';
-    ctx.fillText('stage '+(levelRounds+1)+'/2',cw-120, 60);
+    ctx.fillText('stage '+(levelRounds+1)+'/2',cw-160, 60);
 }
 
 function handleSideMenuClick(ev) {
@@ -82,8 +81,60 @@ function handleSideMenuClick(ev) {
     
 }
 
+
+function handleCogClick(ev) {
+    let posX = Math.floor(ev.clientX - rect.left);
+    let posY = Math.floor(ev.clientY - rect.top);
+    if(
+       posX >= cw-64 && posX <= cw -32 &&
+       posY >= 30 && posY <= 62
+    ) {
+        setGameStage('stopMenu');
+    }
+}
+
 function drawGameBorder() {
     ctx.drawImage(gameBorder,0,0,cw,ch);
 }
 
+
 // ---------------------------------------
+// stop menu
+let cogImage = new Image();
+cogImage.src = 'assets/cog.png';
+let stopMenuY = -300;
+
+function drawCogIcon() {
+    ctx.drawImage(cogImage,cw-64,30,32,32);
+}
+
+function animateStopMenu(){
+    if(stopMenuY < 100) stopMenuY +=15;
+}
+
+function handleStopMenuClick (ev) {
+    let posX = Math.floor(ev.clientX - rect.left);
+    let posY = Math.floor(ev.clientY - rect.top);
+    if(
+       posX >= cw/2-100 && posX <= cw/2+100 &&
+       posY >= 250 && posY <= 300
+    ) {
+        setGameStage('game');
+    }else if(
+       posX >= cw/2-100 && posX <= cw/2+100 &&
+       posY >= 320 && posY <= 370
+    ) {
+        setGameStage('mainMenu');
+    }
+}
+
+function drawStopMenu() {
+    drawLogic();
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(cw/2-250,stopMenuY,500,300);
+    
+    ctx.fillStyle = 'black';
+    ctx.fillRect(cw/2-100,stopMenuY+150,200,50);
+    ctx.fillRect(cw/2-100,stopMenuY+220,200,50);
+}
+//----------------
