@@ -4,6 +4,7 @@ let enemiesArray = [];
 let enemiesType = ['snake', 'rat'];
 let enemiesTypeCounter = 0;
 let killedEnemy = 0;
+
 function killEnemy(i) {
     enemiesArray[i].alive = false;
     killedEnemy++;
@@ -29,7 +30,10 @@ function addEnemy() {
         if(enemiesTypeCounter == enemiesType.length) {
             enemiesTypeCounter = 0;
             levelRounds ++;
-            if(levelRounds == 2) level++;
+            if(levelRounds == 1) {
+                level++;
+                clearGameVariables();
+            }
         }
     }
 }

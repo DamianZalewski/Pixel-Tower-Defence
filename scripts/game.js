@@ -31,6 +31,8 @@ function gameInit() {
 }
 
 function mainMenuInit() {
+    clearGameVariables();
+    level = 1;
     canvas.addEventListener('click',handleMainMenuClick);
     initFlag = false;
 }
@@ -87,6 +89,18 @@ function setGameStage(newStage) {
     initFlag = true;
 }
 
+function clearGameVariables() {
+    fields = [];
+    enemiesMax = 10;
+    enemiesCounter = 0;
+    enemiesArray = [];
+    enemiesTypeCounter = 0;
+    killedEnemy = 0;
+    towerChoice = 'none';
+    gold = 100;
+    life = 10;
+    levelRounds = 0;
+}
 
 setInterval(game,1000/60);
 

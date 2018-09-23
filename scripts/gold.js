@@ -4,6 +4,7 @@ let gold = 100;
 
 
 function drawGold() {
+    ctx.textAlign = 'left';
     ctx.fillStyle = 'gray';
     ctx.fillRect(cw-190,ch-70,150,40);
     ctx.drawImage(goldCoinImage,cw-220,ch-78,54,54);
