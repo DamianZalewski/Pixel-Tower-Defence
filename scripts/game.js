@@ -1,5 +1,5 @@
 let initFlag = true;
-let stage = 'gameOver';
+let stage = 'adventureMapMenu';
 let animateStopMenuInterval;
 let enemyAnimationInternal;
 let addEnemyInterval;
@@ -9,6 +9,10 @@ function game() {
         case 'mainMenu':
             if(initFlag) mainMenuInit();
             drawMainMenu();
+            break;
+        case 'adventureMapMenu':
+            if(initFlag) adventureMapInit();
+            drawAdventureMap();
             break;
         case 'game':
             if(initFlag) gameInit();
@@ -55,6 +59,11 @@ function stopMenuInit() {
     initFlag = false;
 }
 
+function adventureMapInit() {
+    canvas.addEventListener('click',handleAdventureMapClick);
+    initFlag = false;
+}
+
 function drawLogic() {
     ctx.fillStyle = 'green';
     ctx.fillRect(0,0,800,600);
@@ -86,6 +95,7 @@ function removeAllEvenListeners() {
     canvas.removeEventListener('click',handleMainMenuClick);
     canvas.removeEventListener('click',handleStopMenuClick);
     canvas.removeEventListener('click',handleGameOverClick);
+    canvas.removeEventListener('click',handleAdventureMapClick);
 }
 
 function clearAllIntervals() {

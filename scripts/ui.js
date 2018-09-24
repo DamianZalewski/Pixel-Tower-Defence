@@ -160,3 +160,104 @@ function handleGameOverClick (ev) {
         setGameStage('mainMenu');
     }
 }
+
+//----------------------------
+// adventure map stage
+let adventureMapImage = new Image();
+adventureMapImage.src = 'assets/adventureMap.png'
+function drawAdventureMap() {
+    let size = 40;
+    let x1 = 60;  let y1 = 80;
+    let x2 = 150; let y2 = 200;
+    let x3 = 20;  let y3 = 450;
+    let x4 = 200; let y4 = 420;
+    let x5 = 300; let y5 = 450;
+    let x6 = 500; let y6 = 520;
+    let x7 = 600; let y7 = 450;
+    let x8 = 450; let y8 = 340;
+    let x9 = 500; let y9 = 140;
+    let x10 = 700; let y10 = 100;
+    ctx.drawImage(adventureMapImage,0,0,cw,ch);
+    ctx.fillStyle = 'black';
+    ctx.fillRect(x1,y1,size,size); // level 1
+    ctx.fillRect(x2,y2,size,size);// level 2
+    ctx.fillRect(x3,y3,size,size);// level 3
+    ctx.fillRect(x4,y4,size,size);// level 4
+    ctx.fillRect(x5,y5,size,size);// level 5
+    ctx.fillRect(x6,y6,size,size);// level 6
+    ctx.fillRect(x7,y7,size,size);// level 7
+    ctx.fillRect(x8,y8,size,size);// level 8
+    ctx.fillRect(x9,y9,size,size);// level 9
+    ctx.fillRect(x10,y10,size,size);// level 0
+}
+
+function handleAdventureMapClick(ev) {
+    let size = 40;
+    let x1 = 60;  let y1 = 80;
+    let x2 = 150; let y2 = 200;
+    let x3 = 20;  let y3 = 450;
+    let x4 = 200; let y4 = 420;
+    let x5 = 300; let y5 = 450;
+    let x6 = 500; let y6 = 520;
+    let x7 = 600; let y7 = 450;
+    let x8 = 450; let y8 = 340;
+    let x9 = 500; let y9 = 140;
+    let x10 = 700; let y10 = 100;
+    let posX = Math.floor(ev.clientX - rect.left);
+    let posY = Math.floor(ev.clientY - rect.top);
+    
+    if(
+       posX >= x1 && posX <= x1+size &&
+       posY >= y1 && posY <= y1+size
+    ) {
+        console.log('level 1');
+    }else     if(
+       posX >= x2 && posX <= x2+size &&
+       posY >= y2 && posY <= y2+size
+    ) {
+        console.log('level 2');
+    }else    if(
+       posX >= x3 && posX <= x3+size &&
+       posY >= y3 && posY <= y3+size
+    ) {
+        console.log('level 3');
+    }else    if(
+       posX >= x4 && posX <= x4+size &&
+       posY >= y4 && posY <= y4+size
+    ) {
+        console.log('level 4');
+    }else    if(
+       posX >= x5 && posX <= x5+size &&
+       posY >= y5 && posY <= y5+size
+    ) {
+        console.log('level 5');
+    }else    if(
+       posX >= x6 && posX <= x6+size &&
+       posY >= y6 && posY <= y6+size
+    ) {
+        console.log('level 6');
+    }else    if(
+       posX >= x7 && posX <= x7+size &&
+       posY >= y7 && posY <= y7+size
+    ) {
+        console.log('level 7');
+    }else    if(
+       posX >= x8 && posX <= x8+size &&
+       posY >= y8 && posY <= y8+size
+    ) {
+        console.log('level 8');
+    }else    if(
+       posX >= x9 && posX <= x9+size &&
+       posY >= y9 && posY <= y9+size
+    ) {
+        console.log('level 9');
+    }else    if(
+       posX >= x10 && posX <= x10+size &&
+       posY >= y10 && posY <= y10+size
+    ) {
+        console.log('level 10');
+    }
+
+}
+
+//-----------------------------
