@@ -142,7 +142,7 @@ function updateEnemy() {
         }
         
         if (enemiesArray[i].y > ch - 30 - 54 || enemiesArray[i].x > 30 + 10*54) {
-            life--;
+            lifeDamage();
             resetEnemy(i);
         }
 

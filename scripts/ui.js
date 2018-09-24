@@ -138,3 +138,25 @@ function drawStopMenu() {
     ctx.fillRect(cw/2-100,stopMenuY+220,200,50);
 }
 //----------------
+// game over stage
+
+function drawGameOver() {
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0,0,cw,ch);
+    ctx.font = '36px arial';
+    ctx.fillStyle = 'white';
+    ctx.textAlign = 'center';
+    ctx.fillText('Game Over!',cw/2,150);
+    ctx.fillRect(cw/2-100,400,200,50);
+}
+
+function handleGameOverClick (ev) {
+    let posX = Math.floor(ev.clientX - rect.left);
+    let posY = Math.floor(ev.clientY - rect.top);
+    if(
+       posX >= cw/2-100 && posX <= cw/2+100 &&
+       posY >= 400 && posY <= 450
+    ) {
+        setGameStage('mainMenu');
+    }
+}

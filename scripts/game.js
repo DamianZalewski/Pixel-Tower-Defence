@@ -1,5 +1,5 @@
 let initFlag = true;
-let stage = 'mainMenu';
+let stage = 'gameOver';
 let animateStopMenuInterval;
 let enemyAnimationInternal;
 let addEnemyInterval;
@@ -19,6 +19,10 @@ function game() {
             if(initFlag) stopMenuInit();
             drawStopMenu();
             break;
+        case 'gameOver':
+            if(initFlag) gameOverInit();
+            drawGameOver();
+            break;
     }
 }
 
@@ -28,6 +32,13 @@ function gameInit() {
     addEnemyInterval = setInterval(addEnemy,3000);
     gameEventInit();
     initFlag = false;
+}
+
+
+function gameOverInit() {
+    clearGameVariables();
+    canvas.addEventListener('click',handleGameOverClick);
+    initFlag = true;
 }
 
 function mainMenuInit() {
@@ -74,6 +85,7 @@ function removeAllEvenListeners() {
     canvas.removeEventListener('click',handleCogClick);
     canvas.removeEventListener('click',handleMainMenuClick);
     canvas.removeEventListener('click',handleStopMenuClick);
+    canvas.removeEventListener('click',handleGameOverClick);
 }
 
 function clearAllIntervals() {
@@ -98,7 +110,7 @@ function clearGameVariables() {
     killedEnemy = 0;
     towerChoice = 'none';
     gold = 100;
-    life = 10;
+    life = 1;
     levelRounds = 0;
 }
 
