@@ -31,8 +31,9 @@ function addEnemy() {
             enemiesTypeCounter = 0;
             levelRounds ++;
             if(levelRounds == 1) {
-                level++;
+                mapLevel++;
                 clearGameVariables();
+                setGameStage('adventureMapMenu');
             }
         }
     }

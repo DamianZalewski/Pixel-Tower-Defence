@@ -18,7 +18,7 @@ function handleMainMenuClick(ev) {
         posY >= mainMenuButtonY && posY <= mainMenuButtonY + mainMenuButtonHeight
         ) 
     {
-         setGameStage('game');
+         setGameStage('adventureMapMenu');
     }
 }   
 // ----------------------------------------------
@@ -167,7 +167,7 @@ let adventureMapImage = new Image();
 adventureMapImage.src = 'assets/adventureMap.png'
 function drawAdventureMap() {
     let size = 40;
-    let x1 = 60;  let y1 = 80;
+    let x1 = 60;  let y1 = 140;
     let x2 = 150; let y2 = 200;
     let x3 = 20;  let y3 = 450;
     let x4 = 200; let y4 = 420;
@@ -179,21 +179,35 @@ function drawAdventureMap() {
     let x10 = 700; let y10 = 100;
     ctx.drawImage(adventureMapImage,0,0,cw,ch);
     ctx.fillStyle = 'black';
+    ctx.fillRect(30,30,150,50); // back to main menu
+
+    if(mapLevel >= 1) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
     ctx.fillRect(x1,y1,size,size); // level 1
+    if(mapLevel >= 2) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
     ctx.fillRect(x2,y2,size,size);// level 2
+    if(mapLevel >= 3) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
     ctx.fillRect(x3,y3,size,size);// level 3
+    if(mapLevel >= 4) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
     ctx.fillRect(x4,y4,size,size);// level 4
+    if(mapLevel >= 5) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
     ctx.fillRect(x5,y5,size,size);// level 5
+    if(mapLevel >= 6) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
     ctx.fillRect(x6,y6,size,size);// level 6
+    if(mapLevel >= 7) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
     ctx.fillRect(x7,y7,size,size);// level 7
+    if(mapLevel >= 8) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
     ctx.fillRect(x8,y8,size,size);// level 8
+    if(mapLevel >= 9) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
     ctx.fillRect(x9,y9,size,size);// level 9
-    ctx.fillRect(x10,y10,size,size);// level 0
+    if(mapLevel >= 10) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
+    ctx.fillRect(x10,y10,size,size);// level 10
+    
+
 }
 
 function handleAdventureMapClick(ev) {
     let size = 40;
-    let x1 = 60;  let y1 = 80;
+    let x1 = 60;  let y1 = 140;
     let x2 = 150; let y2 = 200;
     let x3 = 20;  let y3 = 450;
     let x4 = 200; let y4 = 420;
@@ -207,15 +221,23 @@ function handleAdventureMapClick(ev) {
     let posY = Math.floor(ev.clientY - rect.top);
     
     if(
+       posX >= 30 && posX <= 180 &&
+       posY >= 30 && posY <= 80
+    ) {
+        setGameStage('mainMenu');
+    }else 
+    if(
        posX >= x1 && posX <= x1+size &&
        posY >= y1 && posY <= y1+size
     ) {
-        console.log('level 1');
+        level = 1;
+        setGameStage('game');
     }else     if(
        posX >= x2 && posX <= x2+size &&
        posY >= y2 && posY <= y2+size
     ) {
-        console.log('level 2');
+        level = 2;
+        setGameStage('game');
     }else    if(
        posX >= x3 && posX <= x3+size &&
        posY >= y3 && posY <= y3+size

@@ -1,5 +1,5 @@
 let initFlag = true;
-let stage = 'adventureMapMenu';
+let stage = 'mainMenu';
 let animateStopMenuInterval;
 let enemyAnimationInternal;
 let addEnemyInterval;
