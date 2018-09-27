@@ -27,22 +27,33 @@ function game() {
             if(initFlag) gameOverInit();
             drawGameOver();
             break;
+        case 'winMenu':
+            if(initFlag) winMenuInit();
+            drawWinMenu();
+            break;
     }
 }
 
 function gameInit() {
     createFields();
+    enemyAnimation();
+    addEnemy();
     enemyAnimationInternal = setInterval(enemyAnimation,150);
-    addEnemyInterval = setInterval(addEnemy,3000);
+    addEnemyInterval = setInterval(addEnemy,500);
     gameEventInit();
     initFlag = false;
 }
 
+function winMenuInit() {
+    clearGameVariables();
+    canvas.addEventListener('click',handleWinMenuClick);
+    initFlag = false
+}
 
 function gameOverInit() {
     clearGameVariables();
     canvas.addEventListener('click',handleGameOverClick);
-    initFlag = true;
+    initFlag = false;
 }
 
 function mainMenuInit() {

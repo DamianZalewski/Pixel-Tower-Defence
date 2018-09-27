@@ -226,13 +226,13 @@ function handleAdventureMapClick(ev) {
     ) {
         setGameStage('mainMenu');
     }else 
-    if(
+    if(mapLevel >= 1 &&
        posX >= x1 && posX <= x1+size &&
        posY >= y1 && posY <= y1+size
     ) {
         level = 1;
         setGameStage('game');
-    }else     if(
+    }else     if( mapLevel >= 2 &&
        posX >= x2 && posX <= x2+size &&
        posY >= y2 && posY <= y2+size
     ) {
@@ -283,3 +283,27 @@ function handleAdventureMapClick(ev) {
 }
 
 //-----------------------------
+//--- win stage menu
+function drawWinMenu() {
+    ctx.fillStyle = 'gold';
+    ctx.fillRect(cw/2-300,100,600,400);
+    ctx.font = '36px arial';
+    ctx.fillStyle = 'black';
+    ctx.textAlign = 'center';
+    ctx.fillText('You won!',cw/2,200);
+    ctx.fillRect(cw/2-100,400,200,50);
+}
+
+function handleWinMenuClick(ev) {
+        let posX = Math.floor(ev.clientX - rect.left);
+    let posY = Math.floor(ev.clientY - rect.top);
+    if(
+       posX >= cw/2-100 && posX <= cw/2+100 &&
+       posY >= 400 && posY <= 450
+    ) {
+        setGameStage('adventureMapMenu');
+    }
+
+}
+
+//---------------------

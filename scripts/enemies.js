@@ -33,7 +33,7 @@ function addEnemy() {
             if(levelRounds == 1) {
                 mapLevel++;
                 clearGameVariables();
-                setGameStage('adventureMapMenu');
+                setGameStage('winMenu');
             }
         }
     }
