@@ -31,6 +31,7 @@ function addEnemy() {
             enemiesTypeCounter = 0;
             levelRounds ++;
             if(levelRounds == 1) {
+                setStars(mapLevel-1);
                 mapLevel++;
                 clearGameVariables();
                 setGameStage('winMenu');

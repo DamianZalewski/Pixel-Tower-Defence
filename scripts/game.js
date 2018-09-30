@@ -60,6 +60,10 @@ function mainMenuInit() {
     clearGameVariables();
     level = 1;
     canvas.addEventListener('click',handleMainMenuClick);
+    if(starsInitFlag) {
+        initStars();
+        starsInitFlag = false;
+    }
     initFlag = false;
 }
 
@@ -131,7 +135,7 @@ function clearGameVariables() {
     killedEnemy = 0;
     towerChoice = 'none';
     gold = 100;
-    life = 1;
+    life = 10;
     levelRounds = 0;
 }
 

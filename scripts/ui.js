@@ -202,6 +202,7 @@ function drawAdventureMap() {
     if(mapLevel >= 10) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
     ctx.fillRect(x10,y10,size,size);// level 10
     
+    drawStarsAdventureMap();
 
 }
 
