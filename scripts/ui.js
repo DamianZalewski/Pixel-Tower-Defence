@@ -2,12 +2,14 @@
 let mainMenuButtonWidth = 300;
 let mainMenuButtonHeight = 50;
 let mainMenuButtonX = cw/2 - mainMenuButtonWidth/2;
-let mainMenuButtonY = 300;
+let mainMenuButtonY = 320;
+let playButton = new Image();
+playButton.src = 'assets/playButton.png'
 
 function drawMainMenu() {
     ctx.drawImage(mainMenuImage,0,0,cw,ch);
     ctx.fillStyle = 'black';
-    ctx.fillRect(mainMenuButtonX,mainMenuButtonY,mainMenuButtonWidth,mainMenuButtonHeight);
+    ctx.drawImage(playButton,mainMenuButtonX,mainMenuButtonY,mainMenuButtonWidth,mainMenuButtonHeight);
 }
 
 function handleMainMenuClick(ev) {
@@ -164,7 +166,13 @@ function handleGameOverClick (ev) {
 //----------------------------
 // adventure map stage
 let adventureMapImage = new Image();
-adventureMapImage.src = 'assets/adventureMap.png'
+adventureMapImage.src = 'assets/adventureMap.png';
+let backButton = new Image();
+backButton.src = 'assets/backButton.png';
+let townImage = new Image();
+townImage.src = 'assets/town.png';
+let questionButton = new Image();
+questionButton.src = 'assets/questionButton.png';
 function drawAdventureMap() {
     let size = 40;
     let x1 = 60;  let y1 = 140;
@@ -179,31 +187,20 @@ function drawAdventureMap() {
     let x10 = 700; let y10 = 100;
     ctx.drawImage(adventureMapImage,0,0,cw,ch);
     ctx.fillStyle = 'black';
-    ctx.fillRect(30,30,150,50); // back to main menu
+    ctx.drawImage(backButton,30,30,150,25); // back to main menu
 
-    if(mapLevel >= 1) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
-    ctx.fillRect(x1,y1,size,size); // level 1
-    if(mapLevel >= 2) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
-    ctx.fillRect(x2,y2,size,size);// level 2
-    if(mapLevel >= 3) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
-    ctx.fillRect(x3,y3,size,size);// level 3
-    if(mapLevel >= 4) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
-    ctx.fillRect(x4,y4,size,size);// level 4
-    if(mapLevel >= 5) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
-    ctx.fillRect(x5,y5,size,size);// level 5
-    if(mapLevel >= 6) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
-    ctx.fillRect(x6,y6,size,size);// level 6
-    if(mapLevel >= 7) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
-    ctx.fillRect(x7,y7,size,size);// level 7
-    if(mapLevel >= 8) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
-    ctx.fillRect(x8,y8,size,size);// level 8
-    if(mapLevel >= 9) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
-    ctx.fillRect(x9,y9,size,size);// level 9
-    if(mapLevel >= 10) ctx.fillStyle = 'darkviolet'; else ctx.fillStyle = 'black'; 
-    ctx.fillRect(x10,y10,size,size);// level 10
+    ctx.drawImage(townImage,x1,y1,size,size); // level 1
+    if(mapLevel >= 2) ctx.drawImage(townImage,x2,y2,size,size); else  ctx.drawImage(questionButton,x2,y2,size,size);
+    if(mapLevel >= 3) ctx.drawImage(townImage,x3,y3,size,size); else  ctx.drawImage(questionButton,x3,y3,size,size);
+    if(mapLevel >= 4) ctx.drawImage(townImage,x4,y4,size,size); else  ctx.drawImage(questionButton,x4,y4,size,size);
+    if(mapLevel >= 5) ctx.drawImage(townImage,x5,y5,size,size); else  ctx.drawImage(questionButton,x5,y5,size,size);
+    if(mapLevel >= 6) ctx.drawImage(townImage,x6,y6,size,size); else  ctx.drawImage(questionButton,x6,y6,size,size);
+    if(mapLevel >= 7) ctx.drawImage(townImage,x7,y7,size,size); else  ctx.drawImage(questionButton,x7,y7,size,size);
+    if(mapLevel >= 8) ctx.drawImage(townImage,x8,y8,size,size); else  ctx.drawImage(questionButton,x8,y8,size,size);
+    if(mapLevel >= 9) ctx.drawImage(townImage,x9,y9,size,size); else  ctx.drawImage(questionButton,x9,y9,size,size);
+    if(mapLevel >= 10) ctx.drawImage(townImage,x10,y10,size,size); else  ctx.drawImage(questionButton,x10,y10,size,size);
     
     drawStarsAdventureMap();
-
 }
 
 function handleAdventureMapClick(ev) {
@@ -223,7 +220,7 @@ function handleAdventureMapClick(ev) {
     
     if(
        posX >= 30 && posX <= 180 &&
-       posY >= 30 && posY <= 80
+       posY >= 30 && posY <= 55
     ) {
         setGameStage('mainMenu');
     }else 
