@@ -9,6 +9,8 @@ function field()  {
     this.posY = 0;
     this.type = 'none';
     this.tower = '';
+    this.range = 0;
+    this.damage = 0;
     this.shotBool = false;
     this.shootX = this.posX;
     this.shootY = this.posY;

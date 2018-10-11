@@ -10,9 +10,11 @@ function drawShot() {
 function updateShot() {
     for(let i = 0; i < fields.length; i++) {
         if (!fields[i].shotBool && fields[i].type === 'building') {
-            fields[i].shotBool = true;
-            fields[i].shotX = fields[i].posX;
-            fields[i].shotY = fields[i].posY;
+            if(isEnemyInRange(fields[i])) {
+                fields[i].shotBool = true;
+                fields[i].shotX = fields[i].posX+22;
+                fields[i].shotY = fields[i].posY;
+            }
         }
         else {
             for(let j = 0;j < enemiesArray.length; j++) {
@@ -30,7 +32,22 @@ function updateShot() {
                         }
                 } 
             }
-            
         }
     }
+}
+
+function isEnemyInRange(field) {
+    let x = field.posX;
+    let y = field.posY;
+    for(let j = 0; j<enemiesArray.length; j++) {
+        if(!enemiesArray[j].alive) continue;
+        if(
+            enemiesArray[j].x + enemiesArray[j].width >=  field.x - (field.range * field.size)  &&
+            enemiesArray[j].x <=  field.x + field.size + (field.range * field.size) &&
+            enemiesArray[j].y + enemiesArray[j].height >=  field.y - (field.range * field.size) &&
+            enemiesArray[j].y <=  field.y + field.size + (field.range * field.size) 
+        ) return true;
+    }
+    
+    return false;
 }

@@ -28,6 +28,8 @@ function buildTower(i) {
             if(gold - archerCost >= 0) {
             fields[i].tower = 'archerTower';
             fields[i].type = 'building';
+            fields[i].damage = 1;
+            fields[i].range = 10;
             gold -= archerCost;
             }
             break;
@@ -35,6 +37,8 @@ function buildTower(i) {
             if(gold -mageCost >= 0) {
             fields[i].tower = 'mageTower';
             fields[i].type = 'building';
+            fields[i].damage = 2;
+            fields[i].range = 10;
             gold -= mageCost;
             }
             break;
