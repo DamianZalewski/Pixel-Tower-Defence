@@ -39,7 +39,7 @@ function gameInit() {
     enemyAnimation();
     addEnemy();
     enemyAnimationInternal = setInterval(enemyAnimation,150);
-    addEnemyInterval = setInterval(addEnemy,500);
+    addEnemyInterval = setInterval(addEnemy,3000);
     gameEventInit();
     initFlag = false;
 }
