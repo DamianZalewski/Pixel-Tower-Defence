@@ -234,25 +234,27 @@ function enemyAnimation() {
     }
 }
 
+let enemyInfoImage = new Image();
+enemyInfoImage.src = "assets/enemy-info.png";
+//   ctx.drawImage(sideMenuInfoImage,cw-188,ch-70,155,40);
  function drawEnemyInfo() {
-        ctx.fillStyle = 'black';
-        ctx.fillRect(cw-190,ch-250,150,100);
+        ctx.drawImage(enemyInfoImage,cw-188,ch-230,155,100);
         switch(enemiesArray[0].ratAnimationStage) {
             case 0:
-                ctx.drawImage(enemiesArray[0].ratImageBottom1,cw-140,ch-210,54,54);
+                ctx.drawImage(enemiesArray[0].ratImageBottom1,cw-140,ch-190,54,54);
                 break;
             case 1:
-                ctx.drawImage(enemiesArray[0].ratImageBottom2,cw-140,ch-210,54,54);
+                ctx.drawImage(enemiesArray[0].ratImageBottom2,cw-140,ch-190,54,54);
                 break;
             case 2:
-                ctx.drawImage(enemiesArray[0].ratImageBottom3,cw-140,ch-210,54,54);
+                ctx.drawImage(enemiesArray[0].ratImageBottom3,cw-140,ch-190,54,54);
                 break;
             case 3:
-                ctx.drawImage(enemiesArray[0].ratImageBottom4,cw-140,ch-210,54,54);
+                ctx.drawImage(enemiesArray[0].ratImageBottom4,cw-140,ch-190,54,54);
                 break;
         }
         ctx.fillStyle = "white";
     ctx.textAlign = 'center';
-        ctx.fillText(enemiesArray[0].name, cw-115,ch-220);
+        ctx.fillText(enemiesArray[0].name, cw-115,ch-200);
      ctx.textAlign = 'left';
 }

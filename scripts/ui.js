@@ -130,10 +130,15 @@ function handleStopMenuClick (ev) {
     }
 }
 
+let stopMenuImage = new Image();
+stopMenuImage.src = "assets/stop-menu.png";
+
+//let stopMenuButtonImage = new Image();
+//stopMenuButtonImage.src = "assets/stop-menu-button.png";
+
 function drawStopMenu() {
     drawLogic();
-    ctx.fillStyle = 'blue';
-    ctx.fillRect(cw/2-250,stopMenuY,500,300);
+    ctx.drawImage(stopMenuImage,cw/2-250,stopMenuY,500,300);
     
     ctx.fillStyle = 'black';
     ctx.fillRect(cw/2-100,stopMenuY+150,200,50);
