@@ -30,27 +30,73 @@ let gameBorder = new Image();
 gameBorder.src = "assets/gameBorder.png";
 let mainMenuImage = new Image();
 mainMenuImage.src = "assets/mainMenu.png";
-
+let towerBackgroundImage = new Image();
+towerBackgroundImage.src = "assets/tower-background.png";
+let towerGoldBackgroundImage = new Image();
+towerGoldBackgroundImage.src = "assets/tower-gold-background.png";
 function drawSideMenu() {
-    towerChoice == 'archerTower' ? ctx.fillStyle = "red" : ctx.fillStyle = "white";
-    ctx.fillRect(cw-200,100,54,54);
-    ctx.drawImage(archerTower,cw-200,100,54,54);
-    ctx.fillStyle = "black";
-    ctx.fillRect(cw-200,150,54,20);
-    ctx.drawImage(goldCoinImage, cw-210,145,30,30);
+    // first row
+    towerChoice == 'archerTower' ? ctx.fillStyle = "gray" : ctx.fillStyle = "white";
+    ctx.fillRect(cw-181,100,46,54);
+    ctx.drawImage(archerTower,cw-185,100,54,54);
+    ctx.drawImage(towerBackgroundImage,cw-185, 100, 54, 54);
+    ctx.drawImage(towerGoldBackgroundImage,cw-185,150,54,20);
+    ctx.drawImage(goldCoinImage, cw-195,145,30,30);
     ctx.fillStyle = 'white';
     ctx.font = "16px Arial";
-    ctx.fillText('15',cw-175,166);
+    ctx.fillText('15',cw-155,166);
     
-    towerChoice == 'mageTower' ? ctx.fillStyle = "red" : ctx.fillStyle = "white";
-    ctx.fillRect(cw-100,100,54,54);
-    ctx.drawImage(mageTower,cw-100,100,54,54);
-    ctx.fillStyle = "black";
-    ctx.fillRect(cw-100,150,54,20);
-    ctx.drawImage(goldCoinImage, cw-110,145,30,30);
+    towerChoice == 'mageTower' ? ctx.fillStyle = "gray" : ctx.fillStyle = "white";
+    ctx.fillRect(cw-91,100,46,54);
+    ctx.drawImage(mageTower,cw-95,100,54,54);
+    ctx.drawImage(towerBackgroundImage,cw-95, 100, 54, 54);
+    ctx.drawImage(towerGoldBackgroundImage,cw-95,150,54,20);
+    ctx.drawImage(goldCoinImage, cw-105,145,30,30);
     ctx.fillStyle = 'white';
     ctx.font = "16px Arial";
-    ctx.fillText('40',cw-75,166);
+    ctx.fillText('40',cw-65,166);
+    
+//    // second row
+//    towerChoice == 'archerTower' ? ctx.fillStyle = "gray" : ctx.fillStyle = "white";
+//    ctx.fillRect(cw-181,100,46,54);
+//    ctx.drawImage(archerTower,cw-185,100,54,54);
+//    ctx.drawImage(towerBackgroundImage,cw-185, 100, 54, 54);
+//    ctx.drawImage(towerGoldBackgroundImage,cw-185,150,54,20);
+//    ctx.drawImage(goldCoinImage, cw-195,145,30,30);
+//    ctx.fillStyle = 'white';
+//    ctx.font = "16px Arial";
+//    ctx.fillText('15',cw-155,166);
+//    
+//    towerChoice == 'mageTower' ? ctx.fillStyle = "gray" : ctx.fillStyle = "white";
+//    ctx.fillRect(cw-91,100,46,54);
+//    ctx.drawImage(mageTower,cw-95,100,54,54);
+//    ctx.drawImage(towerBackgroundImage,cw-95, 100, 54, 54);
+//    ctx.drawImage(towerGoldBackgroundImage,cw-95,150,54,20);
+//    ctx.drawImage(goldCoinImage, cw-105,145,30,30);
+//    ctx.fillStyle = 'white';
+//    ctx.font = "16px Arial";
+//    ctx.fillText('40',cw-65,166);
+//    
+//    // third row
+//    towerChoice == 'archerTower' ? ctx.fillStyle = "gray" : ctx.fillStyle = "white";
+//    ctx.fillRect(cw-181,100,46,54);
+//    ctx.drawImage(archerTower,cw-185,100,54,54);
+//    ctx.drawImage(towerBackgroundImage,cw-185, 100, 54, 54);
+//    ctx.drawImage(towerGoldBackgroundImage,cw-185,150,54,20);
+//    ctx.drawImage(goldCoinImage, cw-195,145,30,30);
+//    ctx.fillStyle = 'white';
+//    ctx.font = "16px Arial";
+//    ctx.fillText('15',cw-155,166);
+//    
+//    towerChoice == 'mageTower' ? ctx.fillStyle = "gray" : ctx.fillStyle = "white";
+//    ctx.fillRect(cw-91,100,46,54);
+//    ctx.drawImage(mageTower,cw-95,100,54,54);
+//    ctx.drawImage(towerBackgroundImage,cw-95, 100, 54, 54);
+//    ctx.drawImage(towerGoldBackgroundImage,cw-95,150,54,20);
+//    ctx.drawImage(goldCoinImage, cw-105,145,30,30);
+//    ctx.fillStyle = 'white';
+//    ctx.font = "16px Arial";
+//    ctx.fillText('40',cw-65,166);
     
     drawGold();
     drawLife();
@@ -59,10 +105,15 @@ function drawSideMenu() {
     drawCogIcon();
 }
 
+
+let monsterStageImage = new Image();
+monsterStageImage.src = "assets/monster-stage.png";
+
 function drawStage() {
+    ctx.drawImage(monsterStageImage, cw-190,35,40,40);
     ctx.fillStyle = 'white';
     ctx.textAlign = 'center';
-    ctx.fillText('stage '+(levelRounds+1)+'/2',cw-160, 60);
+    ctx.fillText((levelRounds+1)+'/2',cw-130, 65);
 }
 
 function handleSideMenuClick(ev) {
@@ -133,16 +184,18 @@ function handleStopMenuClick (ev) {
 let stopMenuImage = new Image();
 stopMenuImage.src = "assets/stop-menu.png";
 
-//let stopMenuButtonImage = new Image();
-//stopMenuButtonImage.src = "assets/stop-menu-button.png";
+let stopMenuButtonImage = new Image();
+stopMenuButtonImage.src = "assets/stop-menu-button.png";
 
 function drawStopMenu() {
     drawLogic();
     ctx.drawImage(stopMenuImage,cw/2-250,stopMenuY,500,300);
-    
-    ctx.fillStyle = 'black';
-    ctx.fillRect(cw/2-100,stopMenuY+150,200,50);
-    ctx.fillRect(cw/2-100,stopMenuY+220,200,50);
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.drawImage(stopMenuButtonImage,cw/2-100,stopMenuY+150,200,50);
+    ctx.fillText('BACK',cw/2,stopMenuY+185,200);
+    ctx.drawImage(stopMenuButtonImage,cw/2-100,stopMenuY+220,200,50);
+    ctx.fillText('EXIT',cw/2,stopMenuY+255,200);
 }
 //----------------
 // game over stage
