@@ -20,7 +20,7 @@ function handleMainMenuClick(ev) {
         posY >= mainMenuButtonY && posY <= mainMenuButtonY + mainMenuButtonHeight
         ) 
     {
-         setGameStage('adventureMapMenu');
+         setGameStage('profileMenu');
     }
 }   
 // ----------------------------------------------
@@ -200,14 +200,20 @@ function drawStopMenu() {
 //----------------
 // game over stage
 
+let ripImage = new Image();
+ripImage.src = "assets/rip.png";
+
 function drawGameOver() {
     ctx.fillStyle = 'black';
     ctx.fillRect(0,0,cw,ch);
-    ctx.font = '36px arial';
+    ctx.font = '28px arial';
     ctx.fillStyle = 'white';
     ctx.textAlign = 'center';
+    ctx.drawImage(ripImage,cw/2-64,200,128,128);
+    ctx.drawImage(stopMenuButtonImage,cw/2-100,400,200,50);
+    ctx.fillText('CONTINUE',cw/2,435,200,50);
+     ctx.font = '38px arial';
     ctx.fillText('Game Over!',cw/2,150);
-    ctx.fillRect(cw/2-100,400,200,50);
 }
 
 function handleGameOverClick (ev) {
@@ -360,6 +366,57 @@ function handleWinMenuClick(ev) {
         setGameStage('adventureMapMenu');
     }
 
+}
+
+//---------------------
+
+//-----------------------------
+//--- profile menu
+function drawProfileMenu() {
+    ctx.fillStyle = 'gray';
+    ctx.fillRect(0,0,cw,ch);
+    ctx.font = '36px arial';
+    ctx.fillStyle = 'black';
+    ctx.textAlign = 'center';
+    ctx.fillText('Choose player profile!',cw/2,60);
+    ctx.drawImage(stopMenuButtonImage,cw/2-200,130,400,80);
+    ctx.drawImage(stopMenuButtonImage,cw/2-200,230,400,80);
+    ctx.drawImage(stopMenuButtonImage,  cw/2-200,330,400,80);
+    
+    ctx.drawImage(stopMenuButtonImage,cw/2-100,ch-100,200,50);
+    ctx.fillText('BACK',cw/2,ch-65,200);
+}
+
+function handleProfileMenuClick(ev) {
+    let posX = Math.floor(ev.clientX - rect.left);
+    let posY = Math.floor(ev.clientY - rect.top);
+    if(
+       posX >= cw/2-100 && posX <= cw/2+100 &&
+       posY >= ch-100 && posY <= ch-50
+    ) {
+        setGameStage('mainMenu');
+    } else
+    if(
+       posX >= cw/2-200 && posX <= cw/2+200 &&
+       posY >= 130 && posY <= 180
+    ) {
+        console.log('player 1');
+        setGameStage('adventureMapMenu');
+    } else
+    if(
+       posX >= cw/2-200 && posX <= cw/2+200 &&
+       posY >= 230 && posY <= 280
+    ) {
+        console.log('player 2');
+        setGameStage('adventureMapMenu');
+    } else
+    if(
+       posX >= cw/2-200 && posX <= cw/2+200 &&
+       posY >= 330 && posY <= 380
+    ) {
+        console.log('player 3');
+        setGameStage('adventureMapMenu');
+    }
 }
 
 //---------------------
