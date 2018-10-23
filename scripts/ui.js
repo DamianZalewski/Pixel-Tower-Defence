@@ -401,7 +401,7 @@ function handleProfileMenuClick(ev) {
        posY >= 130 && posY <= 180
     ) {
         console.log('player 1');
-        setGameStage('adventureMapMenu');
+        setGameStage('tutorial');
     } else
     if(
        posX >= cw/2-200 && posX <= cw/2+200 &&

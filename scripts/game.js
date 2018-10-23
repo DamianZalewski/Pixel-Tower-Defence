@@ -3,7 +3,7 @@ let stage = 'mainMenu';
 let animateStopMenuInterval;
 let enemyAnimationInternal;
 let addEnemyInterval;
-stage = 'profileMenu';
+stage = 'tutorial';
 function game() {
     switch(stage) {
         case 'mainMenu':
@@ -34,6 +34,10 @@ function game() {
         case 'profileMenu':
             if(initFlag) profileMenuInit();
             drawProfileMenu();
+            break;
+        case 'tutorial':
+            if(initFlag) tutorialInit();
+            drawTutorial();
             break;
     }
 }
@@ -89,6 +93,11 @@ function profileMenuInit() {
     initFlag = false;
 }
 
+function tutorialInit() {
+    canvas.addEventListener('click',handleTutorialClick);
+    initFlag = false;
+}
+
 function drawLogic() {
     ctx.fillStyle = 'green';
     ctx.fillRect(0,0,800,600);
@@ -122,6 +131,7 @@ function removeAllEvenListeners() {
     canvas.removeEventListener('click',handleGameOverClick);
     canvas.removeEventListener('click',handleAdventureMapClick);
     canvas.removeEventListener('click',handleProfileMenuClick);
+    canvas.removeEventListener('click',handleTutorialClick);
 }
 
 function clearAllIntervals() {
@@ -151,11 +161,3 @@ function clearGameVariables() {
 }
 
 setInterval(game,1000/60);
-
-
-
-
-
-
-
-
