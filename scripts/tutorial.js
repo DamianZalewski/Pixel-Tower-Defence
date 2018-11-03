@@ -1,4 +1,5 @@
 let tutorialStage = 0;
+let tutorialSkipMenuActive = false;
 
 function drawTutorial() {
     switch(tutorialStage) {
@@ -12,11 +13,14 @@ function drawTutorial() {
             drawTutorialStage2();
             break;
     }
+    if(tutorialStage != 0) drawSkipTutorial();
 }
 
 function handleTutorialClick(ev) {
     let posX = Math.floor(ev.clientX - rect.left);
     let posY = Math.floor(ev.clientY - rect.top);
+    handleSkipTutorialClick(posX,posY)
+    if(tutorialSkipMenuActive) return null;
     
     switch(tutorialStage) {
         case 0:
@@ -29,6 +33,41 @@ function handleTutorialClick(ev) {
             handleTutorial2Click(posX,posY);
             break;
     }
+    
+}
+
+function drawSkipTutorial() {
+    ctx.drawImage(backButton,10,10,80,25);
+    if(tutorialSkipMenuActive) {
+        ctx.drawImage(stopMenuImage,cw/2-200,50,400,150);
+        ctx.drawImage(playButton,cw/2-120,130,100,50);
+        ctx.drawImage(playButton,cw/2+20,130,100,50);
+    }
+}
+
+function handleSkipTutorialClick(posX,posY) {
+    if(tutorialSkipMenuActive){
+        if(
+          posX >= cw/2-120 && posX <= cw/2-20 &&
+          posY >= 130 && posY <= 180
+        ) {
+            tutorialStage = 0;
+            tutorialSkipMenuActive = false;
+            setGameStage('adventureMapMenu');
+        }
+        else if (
+          posX >= cw/2+20 && posX <= cw/2+120 &&
+          posY >= 130 && posY <= 180
+        ) {
+            tutorialSkipMenuActive = false;
+        }
+    }
+    else {
+       if(
+          posX >= 10 && posX <= 90 &&
+          posY >= 10 && posY <= 35
+    ) tutorialSkipMenuActive = true;
+    };
 }
 
 // tutorial 0 ---
