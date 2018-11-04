@@ -1,6 +1,14 @@
 let tutorialStage = 0;
 let tutorialSkipMenuActive = false;
 
+let tutorialDialogs = [
+    "Welcome to PIXEL TOWER DEFENCE tutorial!",
+    "My name is Lia and i will show you everything here",
+    "Your main goal is to defence your city from the enemies!"
+];
+
+//TODO: refactor the draw and handle functions
+
 function drawTutorial() {
     switch(tutorialStage) {
         case 0:
@@ -12,6 +20,9 @@ function drawTutorial() {
         case 2:
             drawTutorialStage2();
             break;
+        case 3:
+            drawTutorialStage3();
+            break;
     }
     if(tutorialStage != 0) drawSkipTutorial();
 }
@@ -19,7 +30,7 @@ function drawTutorial() {
 function handleTutorialClick(ev) {
     let posX = Math.floor(ev.clientX - rect.left);
     let posY = Math.floor(ev.clientY - rect.top);
-    handleSkipTutorialClick(posX,posY)
+    handleSkipTutorialClick(posX,posY);
     if(tutorialSkipMenuActive) return null;
     
     switch(tutorialStage) {
@@ -31,6 +42,9 @@ function handleTutorialClick(ev) {
             break;
         case 2:
             handleTutorial2Click(posX,posY);
+            break;
+        case 3:
+            handleTutorial3Click(posX,posY);
             break;
     }
     
@@ -92,6 +106,7 @@ function handleTutorial0Click(posX, posY) {
        posY >= 262 && posY <= 312
     ) {
         tutorialStage = 1;
+        tutorialSkipMenuActive = false;
     } else if(
        posX >= cw/2+50 && posX <= cw/2+150 &&
        posY >= 262 && posY <= 312
@@ -122,7 +137,7 @@ function drawTutorialStage1() {
     ctx.fillStyle = "black";
     ctx.textAlign = 'left';
     ctx.font = '36px Arial';
-    ctx.fillText('Welcome to PIXEL TOWER DEFENCE tutorial!',50,ch-80,cw-100);
+    ctx.fillText(tutorialDialogs[0],50,ch-80,cw-100);
 }
 
 function handleTutorial1Click(posX, posY) {
@@ -137,6 +152,13 @@ function handleTutorial1Click(posX, posY) {
 // tutorial 2 ---
 
 function drawTutorialStage2() {
+        ctx.fillStyle = "black";
+    ctx.fillRect(0,0,cw,ch);
+    
+    // tutorial character
+    ctx.fillStyle = "blue";
+    ctx.fillRect(cw-300,150,300,ch-150);
+    
     // dialog
     ctx.fillStyle = 'yellow';
     ctx.fillRect(0,ch-150,cw,150);
@@ -149,7 +171,7 @@ function drawTutorialStage2() {
     ctx.fillStyle = "black";
     ctx.textAlign = 'left';
     ctx.font = '36px Arial';
-    ctx.fillText('Your goal is to defence your city from the enemies!',50,ch-80,cw-100);
+    ctx.fillText(tutorialDialogs[1],50,ch-80,cw-100);
 }
 
 function handleTutorial2Click(posX, posY) {
@@ -160,3 +182,57 @@ function handleTutorial2Click(posX, posY) {
         tutorialStage = 3;
     }
 }
+
+// tutorial 3 ---
+
+function drawTutorialStage3() {
+        ctx.fillStyle = "black";
+    ctx.fillRect(0,0,cw,ch);
+    
+    // tutorial character
+    ctx.fillStyle = "blue";
+    ctx.fillRect(cw-300,150,300,ch-150);
+    
+    // dialog
+    ctx.fillStyle = 'yellow';
+    ctx.fillRect(0,ch-150,cw,150);
+    
+    // next button
+    ctx.fillStyle = 'red';
+    ctx.fillRect(cw-50,ch-50,40,40);
+    
+    // dialog text
+    ctx.fillStyle = "black";
+    ctx.textAlign = 'left';
+    ctx.font = '36px Arial';
+    ctx.fillText(tutorialDialogs[2],50,ch-80,cw-100);
+}
+
+function handleTutorial3Click(posX, posY) {
+    if(
+       posX >= cw-50 && posX <= cw-10 &&
+       posY >= ch-50 && posY <= ch-10
+    ) {
+        tutorialStage = 0;
+        tutorialSkipMenuActive = false;
+        setGameStage('adventureMapMenu');
+    }
+}
+
+// tutorial 4 ---
+
+function drawTutorialStage4() {
+
+}
+
+function handleTutorial4Click(posX, posY) {
+    if(
+       posX >= cw-50 && posX <= cw-10 &&
+       posY >= ch-50 && posY <= ch-10
+    ) {
+        tutorialStage = 0;
+        tutorialSkipMenuActive = false;
+        setGameStage('adventureMapMenu');
+    }
+}
+
