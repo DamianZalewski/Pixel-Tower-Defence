@@ -9,8 +9,15 @@ function drawShot() {
 
 function updateShot() {
     for(let i = 0; i < fields.length; i++) {
-        if (!fields[i].shotBool && fields[i].type === 'building') {
-            if(isEnemyInRange(fields[i])) {
+        if(fields[i].type !== 'building') continue;
+        if(fields[i].shotBool && !isEnemyInRange(fields[i])) {
+            fields[i].shotBool = false;
+            fields[i].shotX = -1;
+            fields[i].shotX = -1;
+        }
+        else 
+        if (!fields[i].shotBool && isEnemyInRange(fields[i])) {
+        {
                 fields[i].shotBool = true;
                 fields[i].shotX = fields[i].posX+22;
                 fields[i].shotY = fields[i].posY;
@@ -39,13 +46,20 @@ function updateShot() {
 function isEnemyInRange(field) {
     let x = field.posX;
     let y = field.posY;
+    let size = field.size;
+    let range = field.range;
+    range = 1;
     for(let j = 0; j<enemiesArray.length; j++) {
         if(!enemiesArray[j].alive) continue;
+        let enemyX = enemiesArray[j].x;
+        let enemyY = enemiesArray[j].y;
+        let enemyW = enemiesArray[j].width;
+        let enemyH = enemiesArray[j].height;
         if(
-            enemiesArray[j].x + enemiesArray[j].width >=  field.x - (field.range * field.size)  &&
-            enemiesArray[j].x <=  field.x + field.size + (field.range * field.size) &&
-            enemiesArray[j].y + enemiesArray[j].height >=  field.y - (field.range * field.size) &&
-            enemiesArray[j].y <=  field.y + field.size + (field.range * field.size) 
+            enemyY + enemyW >=  x - (range * size)  &&
+            enemyX <=  x + size + (range * size) &&
+            enemyY + enemyH >=  y - (range * size) &&
+            enemyY <=  y + size + (range * size) 
         ) return true;
     }
     

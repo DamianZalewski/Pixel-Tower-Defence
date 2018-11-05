@@ -3,7 +3,8 @@ let stage = 'mainMenu';
 let animateStopMenuInterval;
 let enemyAnimationInternal;
 let addEnemyInterval;
-stage = 'tutorial';
+let updateShotInterval;
+stage = 'adventureMapMenu';
 function game() {
     switch(stage) {
         case 'mainMenu':
@@ -48,6 +49,7 @@ function gameInit() {
     addEnemy();
     enemyAnimationInternal = setInterval(enemyAnimation,150);
     addEnemyInterval = setInterval(addEnemy,3000);
+    updateShotInterval = setInterval(updateShot,50);
     gameEventInit();
     initFlag = false;
 }
@@ -111,7 +113,7 @@ function drawLogic() {
 
 function updateLogic() {
     updateEnemy();
-    updateShot();
+//    updateShot();
 }
 
 function gameEventInit() {
@@ -138,6 +140,7 @@ function clearAllIntervals() {
     clearInterval(enemyAnimationInternal);
     clearInterval(addEnemyInterval);
     clearInterval(animateStopMenuInterval);
+    clearInterval(updateShotInterval);
 }
 
 function setGameStage(newStage) {
