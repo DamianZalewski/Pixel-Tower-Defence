@@ -304,42 +304,50 @@ function handleAdventureMapClick(ev) {
        posX >= x3 && posX <= x3+size &&
        posY >= y3 && posY <= y3+size
     ) {
-        console.log('level 3');
+        level = 3;
+        setGameStage('game');
     }else    if(
        posX >= x4 && posX <= x4+size &&
        posY >= y4 && posY <= y4+size
     ) {
-        console.log('level 4');
+        level = 4;
+        setGameStage('game');
     }else    if(
        posX >= x5 && posX <= x5+size &&
        posY >= y5 && posY <= y5+size
     ) {
-        console.log('level 5');
+        level = 5;
+        setGameStage('game');
     }else    if(
        posX >= x6 && posX <= x6+size &&
        posY >= y6 && posY <= y6+size
     ) {
-        console.log('level 6');
+        level = 6;
+        setGameStage('game');
     }else    if(
        posX >= x7 && posX <= x7+size &&
        posY >= y7 && posY <= y7+size
     ) {
-        console.log('level 7');
+        level = 7;
+        setGameStage('game');
     }else    if(
        posX >= x8 && posX <= x8+size &&
        posY >= y8 && posY <= y8+size
     ) {
-        console.log('level 8');
+        level = 8;
+        setGameStage('game');
     }else    if(
        posX >= x9 && posX <= x9+size &&
        posY >= y9 && posY <= y9+size
     ) {
-        console.log('level 9');
+        level = 9;
+        setGameStage('game');
     }else    if(
        posX >= x10 && posX <= x10+size &&
        posY >= y10 && posY <= y10+size
     ) {
-        console.log('level 10');
+        level = 10;
+        setGameStage('game');
     }
 
 }

@@ -5,6 +5,7 @@ let enemyAnimationInternal;
 let addEnemyInterval;
 let updateShotInterval;
 stage = 'adventureMapMenu';
+mapLevel = 10;
 function game() {
     switch(stage) {
         case 'mainMenu':
