@@ -4,8 +4,8 @@ let animateStopMenuInterval;
 let enemyAnimationInternal;
 let addEnemyInterval;
 let updateShotInterval;
-stage = 'adventureMapMenu';
-mapLevel = 10;
+stage = 'profileMenu';
+//mapLevel = 10;
 function game() {
     switch(stage) {
         case 'mainMenu':
@@ -36,6 +36,10 @@ function game() {
         case 'profileMenu':
             if(initFlag) profileMenuInit();
             drawProfileMenu();
+            break;
+        case 'createProfileMenu':
+            if(initFlag) createProfileMenuInit();
+            drawCreateProfileMenu();
             break;
         case 'tutorial':
             if(initFlag) tutorialInit();
@@ -96,6 +100,12 @@ function profileMenuInit() {
     initFlag = false;
 }
 
+function createProfileMenuInit() {
+    canvas.addEventListener('click',handleCreateProfileMenuClick);
+    document.addEventListener('keyup',handleCreateProfileMenuKeyUp);
+    initFlag = false;
+}
+
 function tutorialInit() {
     canvas.addEventListener('click',handleTutorialClick);
     initFlag = false;
@@ -134,6 +144,8 @@ function removeAllEvenListeners() {
     canvas.removeEventListener('click',handleGameOverClick);
     canvas.removeEventListener('click',handleAdventureMapClick);
     canvas.removeEventListener('click',handleProfileMenuClick);
+    canvas.removeEventListener('click',handleCreateProfileMenuClick);
+    document.removeEventListener('keyup',handleCreateProfileMenuKeyUp);
     canvas.removeEventListener('click',handleTutorialClick);
 }
 
