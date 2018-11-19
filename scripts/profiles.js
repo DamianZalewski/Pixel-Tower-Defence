@@ -8,6 +8,7 @@ let Profile = function() {
 let profileName = 'Anonymous';
 let profileNameDefault = true;
 let profileNameMaxLength = 10;
+let confirmDelete = false;
     
 let profile1 = new Profile();
 let profile2 = new Profile();
@@ -18,6 +19,25 @@ let activeProfile = 0;
 function createNewProfile(profile) {
     profile.name = profileName;
     profile.active = true;
+}
+
+function removeProfile() {
+    if(activeProfile == 1) {
+        localStorage.removeItem('profile1_active');
+        localStorage.removeItem('profile1_name');
+        localStorage.removeItem('profile1_level');
+        localStorage.removeItem('profile1_stars');
+    } else if(activeProfile == 2) {
+        localStorage.removeItem('profile2_active');
+        localStorage.removeItem('profile2_name');
+        localStorage.removeItem('profile2_level');
+        localStorage.removeItem('profile2_stars');
+    } else if(activeProfile == 3) {
+        localStorage.removeItem('profile3_active');
+        localStorage.removeItem('profile3_name');
+        localStorage.removeItem('profile3_level');
+        localStorage.removeItem('profile3_stars');
+    }
 }
 
 //-----------------------------
@@ -35,8 +55,8 @@ function drawProfileMenu() {
     ctx.textAlign = "left";
     //profile 1
     ctx.drawImage(stopMenuButtonImage,cw/2-200,130,400,80);
-    ctx.drawImage(stopMenuButtonImage,cw/2+220,130,40,40);
     if(profile1Active) {
+        ctx.drawImage(stopMenuButtonImage,cw/2+220,130,40,40);
         ctx.fillText(localStorage.getItem('profile1_name'),cw/2-180,175);
         ctx.fillText(localStorage.getItem('profile1_level'),cw/2+150,165);
         ctx.fillText(localStorage.getItem('profile1_stars'),cw/2+150,200);
@@ -45,16 +65,16 @@ function drawProfileMenu() {
        
     //profile 2
     ctx.drawImage(stopMenuButtonImage,cw/2-200,230,400,80);
-    ctx.drawImage(stopMenuButtonImage,cw/2+220,230,40,40);
     if(profile2Active) {
+        ctx.drawImage(stopMenuButtonImage,cw/2+220,230,40,40);
         ctx.fillText(localStorage.getItem('profile2_name'),cw/2-180,275);
         ctx.fillText(localStorage.getItem('profile2_level'),cw/2+150,265);
         ctx.fillText(localStorage.getItem('profile2_stars'),cw/2+150,300);
     }
     //profile 3
     ctx.drawImage(stopMenuButtonImage, cw/2-200,330,400,80);
-    ctx.drawImage(stopMenuButtonImage, cw/2+220,330,40,40);
     if(profile3Active) {
+        ctx.drawImage(stopMenuButtonImage, cw/2+220,330,40,40);
         ctx.fillText(localStorage.getItem('profile3_name'),cw/2-180,375);
         ctx.fillText(localStorage.getItem('profile3_level'),cw/2+150,365);
         ctx.fillText(localStorage.getItem('profile3_stars'),cw/2+150,400);
@@ -63,11 +83,42 @@ function drawProfileMenu() {
     ctx.textAlign = "center";
     ctx.drawImage(stopMenuButtonImage,cw/2-100,ch-100,200,50);
     ctx.fillText('BACK',cw/2,ch-65,200);
+    
+    
+    if(confirmDelete) {
+        ctx.drawImage(stopMenuButtonImage,cw/2-300,100,600,300);
+        ctx.fillText('Are you sure you want to remove this profile?',cw/2,180, 500);
+        ctx.drawImage(stopMenuButtonImage,cw/2-250,300,200,50);
+        ctx.fillText('Yes',cw/2-150,340);
+        ctx.drawImage(stopMenuButtonImage,cw/2+50,300,200,50);
+        ctx.fillText('No',cw/2+150,340);
+    }
 }
 
 function handleProfileMenuClick(ev) {
     let posX = Math.floor(ev.clientX - rect.left);
     let posY = Math.floor(ev.clientY - rect.top);
+    let profile1Active = localStorage.getItem('profile1_active');
+    let profile2Active = localStorage.getItem('profile2_active');
+    let profile3Active = localStorage.getItem('profile3_active');
+    if( confirmDelete && 
+       posX >= cw/2-250 && posX <= cw/2-50 &&
+       posY >= 300 && posY <= 350
+    ) {
+        // confirm delete dialog 'yes'
+        confirmDelete = false;
+        removeProfile();
+    } else
+    if( confirmDelete &&
+       posX >= cw/2+50 && posX <= cw/2+250 &&
+       posY >= 300 && posY <= 350
+    ) {
+        // confirm delete dialog 'no'
+        confirmDelete = false;
+    } else
+    if(confirmDelete) {
+        return 0;         
+    } else
     if(
        posX >= cw/2-100 && posX <= cw/2+100 &&
        posY >= ch-100 && posY <= ch-50
@@ -114,20 +165,29 @@ function handleProfileMenuClick(ev) {
        posX >= cw/2+220 && posX <= cw/2+260 &&
        posY >= 130 && posY <= 170
     ) {
-        console.log('remove profile 1?');
+        if(profile1Active) {
+            activeProfile = 1;
+            confirmDelete = true;
+        }
         
     } else
     if(
        posX >= cw/2+220 && posX <= cw/2+260 &&
        posY >= 230 && posY <= 270
     ) {
-       console.log('remove profile 2?');
+        if(profile2Active) {
+            activeProfile = 2;
+            confirmDelete = true;
+        }
     } else
     if(
        posX >= cw/2+220 && posX <= cw/2+260 &&
        posY >= 330 && posY <= 370
     ) {
-        console.log('remove profile 3?');
+        if(profile3Active) {
+            activeProfile = 3;
+            confirmDelete = true;
+        }
     } 
 }
 
