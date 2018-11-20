@@ -229,6 +229,7 @@ function handleGameOverClick (ev) {
 
 //----------------------------
 // adventure map stage
+let isAchievementMenuActive = false;
 let adventureMapImage = new Image();
 adventureMapImage.src = 'assets/adventureMap.png';
 let backButton = new Image();
@@ -265,6 +266,44 @@ function drawAdventureMap() {
     if(mapLevel >= 10) ctx.drawImage(townImage,x10,y10,size,size); else  ctx.drawImage(questionButton,x10,y10,size,size);
     
     drawStarsAdventureMap();
+    
+    ctx.drawImage(questionButton,cw-50,10,size,size);
+    
+    if(isAchievementMenuActive) drawAchievementMenu();
+}
+
+function drawAchievementMenu() {
+    ctx.fillStyle = 'brown';
+    ctx.fillRect(100,100,600,400);
+    
+    ctx.fillStyle = 'black';
+    ctx.fillRect(650,110,40,40);
+    
+    ctx.fillStyle = 'white';
+    ctx.font = '32px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('Achievements',cw/2,140);
+    
+    let firstX = 135;
+    let firstY = 220;
+    let achivSize = 50;
+    let margin = 30;
+    ctx.drawImage(questionButton,firstX,firstY,achivSize,achivSize);
+    ctx.drawImage(questionButton,firstX+margin*1+achivSize*1,firstY,achivSize,achivSize);
+    ctx.drawImage(questionButton,firstX+margin*2+achivSize*2,firstY,achivSize,achivSize);
+    ctx.drawImage(questionButton,firstX+margin*3+achivSize*3,firstY,achivSize,achivSize);
+    ctx.drawImage(questionButton,firstX+margin*4+achivSize*4,firstY,achivSize,achivSize);
+    ctx.drawImage(questionButton,firstX+margin*5+achivSize*5,firstY,achivSize,achivSize);
+    ctx.drawImage(questionButton,firstX+margin*6+achivSize*6,firstY,achivSize,achivSize);
+
+    let secondY = 340;
+    ctx.drawImage(questionButton,firstX,secondY,achivSize,achivSize);
+    ctx.drawImage(questionButton,firstX+margin*1+achivSize*1,secondY,achivSize,achivSize);
+    ctx.drawImage(questionButton,firstX+margin*2+achivSize*2,secondY,achivSize,achivSize);
+    ctx.drawImage(questionButton,firstX+margin*3+achivSize*3,secondY,achivSize,achivSize);
+    ctx.drawImage(questionButton,firstX+margin*4+achivSize*4,secondY,achivSize,achivSize);
+    ctx.drawImage(questionButton,firstX+margin*5+achivSize*5,secondY,achivSize,achivSize);
+    ctx.drawImage(questionButton,firstX+margin*6+achivSize*6,secondY,achivSize,achivSize);
 }
 
 function handleAdventureMapClick(ev) {
@@ -281,8 +320,15 @@ function handleAdventureMapClick(ev) {
     let x10 = 700; let y10 = 100;
     let posX = Math.floor(ev.clientX - rect.left);
     let posY = Math.floor(ev.clientY - rect.top);
-    
-    if(
+    if( isAchievementMenuActive &&
+       posX >= 650 && posX <= 690 &&
+       posY >= 110 && posY <= 150
+    ) {
+        isAchievementMenuActive = false;
+    } else if (isAchievementMenuActive) {
+        return 0;
+    }
+    else if(
        posX >= 30 && posX <= 180 &&
        posY >= 30 && posY <= 55
     ) {
@@ -348,6 +394,11 @@ function handleAdventureMapClick(ev) {
     ) {
         level = 10;
         setGameStage('game');
+    } else    if(
+       posX >= cw-50 && posX <= cw-10 &&
+       posY >= 10 && posY <= 50
+    ) {
+        isAchievementMenuActive = true;
     }
 
 }
