@@ -288,22 +288,49 @@ function drawAchievementMenu() {
     let firstY = 220;
     let achivSize = 50;
     let margin = 30;
-    ctx.drawImage(questionButton,firstX,firstY,achivSize,achivSize);
-    ctx.drawImage(questionButton,firstX+margin*1+achivSize*1,firstY,achivSize,achivSize);
-    ctx.drawImage(questionButton,firstX+margin*2+achivSize*2,firstY,achivSize,achivSize);
-    ctx.drawImage(questionButton,firstX+margin*3+achivSize*3,firstY,achivSize,achivSize);
-    ctx.drawImage(questionButton,firstX+margin*4+achivSize*4,firstY,achivSize,achivSize);
-    ctx.drawImage(questionButton,firstX+margin*5+achivSize*5,firstY,achivSize,achivSize);
-    ctx.drawImage(questionButton,firstX+margin*6+achivSize*6,firstY,achivSize,achivSize);
+    
+    let recordProfile = {};
+    activeProfile = 1; // TEST REMOVE ME ~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    switch(activeProfile) {
+        case 1: recordProfile = record1;
+            break;
+        case 2: recordProfile = record2;
+            break;
+        case 3: recordProfile = record3;
+            break;
+            
+    }
+//        this.AchivFirstStep = false;
+//    this.AchivFinish1map = false;
+//    this.AchivFinish5map = false;
+//    this.AchivFinish10map = false;
+//    this.AchivKill10Enemies = false;
+//    this.AchivKill100Enemies = false;
+//    this.AchivKill1000Enemies = false;
+//    this.AchivSpend100Gold = false;
+//    this.AchivSpend1000Gold = false;
+//    this.AchivSpend10000Gold = false;
+//    this.AchivBarelyLived = false;
+//    this.AchivGet1tripleStars = false;
+//    this.AchivGet5tripleStars = false;
+//    this.AchivGet10tripleStars = false;
+    
+    ctx.drawImage(recordProfile.AchivFirstStep ? townImage : questionButton,firstX,firstY,achivSize,achivSize);
+    ctx.drawImage(recordProfile.AchivFinish1map ? townImage : questionButton,firstX+margin*1+achivSize*1,firstY,achivSize,achivSize);
+    ctx.drawImage(recordProfile.AchivFinish5map ? townImage : questionButton,firstX+margin*2+achivSize*2,firstY,achivSize,achivSize);
+    ctx.drawImage(recordProfile.AchivFinish10map ? townImage : questionButton,firstX+margin*3+achivSize*3,firstY,achivSize,achivSize);
+    ctx.drawImage(recordProfile.AchivKill10Enemies ? townImage : questionButton,firstX+margin*4+achivSize*4,firstY,achivSize,achivSize);
+    ctx.drawImage(recordProfile.AchivKill100Enemies ? townImage : questionButton,firstX+margin*5+achivSize*5,firstY,achivSize,achivSize);
+    ctx.drawImage(recordProfile.AchivKill1000Enemies ? townImage : questionButton,firstX+margin*6+achivSize*6,firstY,achivSize,achivSize);
 
     let secondY = 340;
-    ctx.drawImage(questionButton,firstX,secondY,achivSize,achivSize);
-    ctx.drawImage(questionButton,firstX+margin*1+achivSize*1,secondY,achivSize,achivSize);
-    ctx.drawImage(questionButton,firstX+margin*2+achivSize*2,secondY,achivSize,achivSize);
-    ctx.drawImage(questionButton,firstX+margin*3+achivSize*3,secondY,achivSize,achivSize);
-    ctx.drawImage(questionButton,firstX+margin*4+achivSize*4,secondY,achivSize,achivSize);
-    ctx.drawImage(questionButton,firstX+margin*5+achivSize*5,secondY,achivSize,achivSize);
-    ctx.drawImage(questionButton,firstX+margin*6+achivSize*6,secondY,achivSize,achivSize);
+    ctx.drawImage(recordProfile.AchivSpend100Gold ? townImage : questionButton,firstX,secondY,achivSize,achivSize);
+    ctx.drawImage(recordProfile.AchivSpend1000Gold ? townImage : questionButton,firstX+margin*1+achivSize*1,secondY,achivSize,achivSize);
+    ctx.drawImage(recordProfile.AchivSpend10000Gold ? townImage : questionButton,firstX+margin*2+achivSize*2,secondY,achivSize,achivSize);
+    ctx.drawImage(recordProfile.AchivBarelyLived ? townImage : questionButton,firstX+margin*3+achivSize*3,secondY,achivSize,achivSize);
+    ctx.drawImage(recordProfile.AchivGet1tripleStars ? townImage : questionButton,firstX+margin*4+achivSize*4,secondY,achivSize,achivSize);
+    ctx.drawImage(recordProfile.AchivGet5tripleStars ? townImage : questionButton,firstX+margin*5+achivSize*5,secondY,achivSize,achivSize);
+    ctx.drawImage(recordProfile.AchivGet10tripleStars ? townImage : questionButton,firstX+margin*6+achivSize*6,secondY,achivSize,achivSize);
 }
 
 function handleAdventureMapClick(ev) {
